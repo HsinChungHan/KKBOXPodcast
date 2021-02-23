@@ -61,18 +61,15 @@ extension EpisodeCell {
         }
     }
     
-    fileprivate func makeTitleLabel() -> UILabel {
-        let label = UILabel()
-        label.textColor = UIColor.black
-        label.font = .boldSystemFont(ofSize: 20)
-        label.numberOfLines = 2
+    fileprivate func makeTitleLabel() -> BoldLabel {
+        let label = BoldLabel()
+        label.setLabel(text: "", numberOfLines: 2, fontSize: 20)
         return label
     }
     
-    fileprivate func makePublishedDateLabel() -> UILabel {
-        let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 12)
-        label.textColor = UIColor.purple
+    fileprivate func makePublishedDateLabel() -> BoldLabel {
+        let label = BoldLabel()
+        label.setLabel(text: "", numberOfLines: 1, fontSize: 12)
         return label
     }
     

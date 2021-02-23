@@ -20,6 +20,9 @@
 		D1212B3125E5155600A96A1C /* BIndable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B3025E5155600A96A1C /* BIndable.swift */; };
 		D1212B4D25E5225D00A96A1C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B4C25E5225D00A96A1C /* StringExtension.swift */; };
 		D1212B5225E5228B00A96A1C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B5125E5228B00A96A1C /* DateExtension.swift */; };
+		D1212B6725E53AFD00A96A1C /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */; };
+		D1212B6F25E53CCB00A96A1C /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B6E25E53CCB00A96A1C /* TextLabel.swift */; };
+		D1212B7425E543E200A96A1C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B7325E543E200A96A1C /* UIViewExtension.swift */; };
 		D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */; };
 		D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */; };
 		D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0A25E4B0000057D42F /* Assets.xcassets */; };
@@ -66,6 +69,9 @@
 		D1212B3025E5155600A96A1C /* BIndable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIndable.swift; sourceTree = "<group>"; };
 		D1212B4C25E5225D00A96A1C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D1212B5125E5228B00A96A1C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
+		D1212B6E25E53CCB00A96A1C /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
+		D1212B7325E543E200A96A1C /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		D1CF5EFE25E4AFFD0057D42F /* KKBOXPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBOXPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -141,6 +147,8 @@
 				D1212B3025E5155600A96A1C /* BIndable.swift */,
 				D1212B4C25E5225D00A96A1C /* StringExtension.swift */,
 				D1212B5125E5228B00A96A1C /* DateExtension.swift */,
+				D1212B6E25E53CCB00A96A1C /* TextLabel.swift */,
+				D1212B7325E543E200A96A1C /* UIViewExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -161,6 +169,14 @@
 				D1212A9925E4BE1D00A96A1C /* R.generated.swift */,
 			);
 			path = ResourceFile;
+			sourceTree = "<group>";
+		};
+		D1212B6525E53AE600A96A1C /* EpisodeVC */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */,
+			);
+			name = EpisodeVC;
 			sourceTree = "<group>";
 		};
 		D1CF5EF525E4AFFD0057D42F = {
@@ -195,6 +211,7 @@
 				D1212B3825E5203400A96A1C /* Utils */,
 				D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */,
 				D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */,
+				D1212B6525E53AE600A96A1C /* EpisodeVC */,
 				D1212B5625E5239C00A96A1C /* HomeVC */,
 				D1CF5F0A25E4B0000057D42F /* Assets.xcassets */,
 				D1CF5F0C25E4B0000057D42F /* LaunchScreen.storyboard */,
@@ -488,12 +505,15 @@
 				D1212B0B25E4E07100A96A1C /* Episode.swift in Sources */,
 				D1212B4D25E5225D00A96A1C /* StringExtension.swift in Sources */,
 				D1212AFF25E4E01E00A96A1C /* APIService.swift in Sources */,
+				D1212B7425E543E200A96A1C /* UIViewExtension.swift in Sources */,
 				D1212B3125E5155600A96A1C /* BIndable.swift in Sources */,
+				D1212B6F25E53CCB00A96A1C /* TextLabel.swift in Sources */,
 				D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */,
 				D1212B5225E5228B00A96A1C /* DateExtension.swift in Sources */,
 				D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */,
 				D1212B2725E4E50500A96A1C /* EpisodeCell.swift in Sources */,
 				D1212B1A25E4E1ED00A96A1C /* HomeViewController.swift in Sources */,
+				D1212B6725E53AFD00A96A1C /* EpisodeViewController.swift in Sources */,
 				D1212A9A25E4BE1D00A96A1C /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

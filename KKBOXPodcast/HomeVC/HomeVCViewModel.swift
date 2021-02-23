@@ -12,6 +12,8 @@ class HomeVCViewModel {
     
     private(set) lazy var episodes = Bindable<[Episode]>.init(value: nil)
     
+    var selectedEpisode: Episode?
+    
     func fetchEpisodes() {
         APIService.shared.fetchEpisodes { (episodes) in
             DispatchQueue.main.async {

@@ -84,4 +84,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         // up padding and bottom padding = 16
         return 100 + 16 * 2
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let episodes = vm.episodes.value else {
+            return
+        }
+        let episodeVC = EpisodeViewController()
+        vm.selectedEpisode = episodes[indexPath.item]
+        episodeVC.dataSource = self
+        self.present(episodeVC, animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController: EpisodeViewControllerDataSource {
+    func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode {
+        guard let selectedeEpisode = vm.selectedEpisode else {
+            fatalError("🚨 You have to select an episode cell!")
+        }
+        return selectedeEpisode
+    }
 }
