@@ -8,6 +8,7 @@
 import Foundation
 import FeedKit
 
+
 // - FIXME: cauz of KKBOX assigment, this model layer should be implemented by Objc
 struct Episode: Codable {
     let title: String
