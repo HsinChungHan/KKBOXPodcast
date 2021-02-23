@@ -12,8 +12,8 @@
 		D1212A9A25E4BE1D00A96A1C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212A9925E4BE1D00A96A1C /* R.generated.swift */; };
 		D1212AAB25E4BE6C00A96A1C /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1212AA925E4BE6C00A96A1C /* pause@2x.png */; };
 		D1212AAC25E4BE6C00A96A1C /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1212AAA25E4BE6C00A96A1C /* play@2x.png */; };
-		D1212AFA25E4E01500A96A1C /* Models in Resources */ = {isa = PBXBuildFile; fileRef = D1212AF925E4E01500A96A1C /* Models */; };
 		D1212AFF25E4E01E00A96A1C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212AFE25E4E01E00A96A1C /* APIService.swift */; };
+		D1212B0B25E4E07100A96A1C /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B0A25E4E07000A96A1C /* Episode.swift */; };
 		D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */; };
 		D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */; };
 		D1CF5F0625E4AFFD0057D42F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0525E4AFFD0057D42F /* ViewController.swift */; };
@@ -53,8 +53,8 @@
 		D1212A9925E4BE1D00A96A1C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		D1212AA925E4BE6C00A96A1C /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
 		D1212AAA25E4BE6C00A96A1C /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
-		D1212AF925E4E01500A96A1C /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		D1212AFE25E4E01E00A96A1C /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		D1212B0A25E4E07000A96A1C /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		D1CF5EFE25E4AFFD0057D42F /* KKBOXPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBOXPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +109,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D1212B0925E4E06800A96A1C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B0A25E4E07000A96A1C /* Episode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D1CF5EF525E4AFFD0057D42F = {
 			isa = PBXGroup;
 			children = (
@@ -134,8 +142,8 @@
 		D1CF5F0025E4AFFD0057D42F /* KKBOXPodcast */ = {
 			isa = PBXGroup;
 			children = (
+				D1212B0925E4E06800A96A1C /* Models */,
 				D1212AFE25E4E01E00A96A1C /* APIService.swift */,
-				D1212AF925E4E01500A96A1C /* Models */,
 				D1212A9925E4BE1D00A96A1C /* R.generated.swift */,
 				D1CF5F4D25E4BBD90057D42F /* Resources */,
 				D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */,
@@ -296,7 +304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1212AFA25E4E01500A96A1C /* Models in Resources */,
 				D1212AAC25E4BE6C00A96A1C /* play@2x.png in Resources */,
 				D1CF5F0E25E4B0000057D42F /* LaunchScreen.storyboard in Resources */,
 				D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */,
@@ -431,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1CF5F0625E4AFFD0057D42F /* ViewController.swift in Sources */,
+				D1212B0B25E4E07100A96A1C /* Episode.swift in Sources */,
 				D1212AFF25E4E01E00A96A1C /* APIService.swift in Sources */,
 				D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */,
 				D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */,
