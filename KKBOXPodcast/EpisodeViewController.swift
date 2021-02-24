@@ -7,11 +7,14 @@
 
 import UIKit
 
+
 protocol EpisodeViewControllerDataSource: AnyObject {
     func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode
 }
 
+
 class EpisodeViewController: UIViewController {
+    
     weak var dataSource: EpisodeViewControllerDataSource?
     var episode: Episode {
         guard let dataSource = dataSource else {
@@ -26,11 +29,18 @@ class EpisodeViewController: UIViewController {
     lazy var episodeImageView = makeEpisodeImageView()
     lazy var pushPlayerButton = makePushPlayerButton()
     
+    lazy var maxPlayerView = makeMaxPlayerView()
+//    var maximizedTopAnchorConstraint: NSLayoutConstraint!
+//    var minimizedTopAnchorConstraint: NSLayoutConstraint!
+//    var bottomAnchorConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        maxPlayerView.setupConstraintsForMaxPlayerView(superView: view)
     }
 }
+
 
 extension EpisodeViewController {
     
@@ -66,6 +76,11 @@ extension EpisodeViewController {
         return button
     }
     
+    @objc func goToPlayerView(sender: UIButton) {
+        // - MARK: pop up audio player view...
+        maxPlayerView.maxmizeMaxPlayerView(superView: view)
+    }
+    
     fileprivate func setupLayout() {
         view.backgroundColor = .white
         let avatarContainerView = UIView()
@@ -85,25 +100,39 @@ extension EpisodeViewController {
         channelLabel.constraint(top: avatarContainerView.snp.top, bottom: nil, leading: avatarContainerView.snp.leading, trailing: avatarContainerView.snp.trailing, padding: .init(top: 10, left: 10, bottom: 10, right: 0), size: .init(width: 0, height: 25))
         titleLabel.constraint(top: channelLabel.snp.bottom, bottom: nil, leading: channelLabel.snp.leading, trailing: channelLabel.snp.trailing, padding: .init(top: 16, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 50))
         
-        let screenHeight = UIScreen.main.bounds.height
+        let height = UIScreen.main.bounds.height / 3
         
         avatarContainerView.snp.makeConstraints {
-            $0.height.equalTo(screenHeight / 3)
+            $0.height.equalTo(height)
         }
         
         summaryLabelLabel.snp.makeConstraints {
-            $0.height.equalTo(screenHeight / 3)
+            $0.height.equalTo(height)
         }
         
         pushPlayerButton.snp.makeConstraints {
-            $0.height.equalTo(screenHeight / 3)
+            $0.height.equalTo(height)
         }
         
         view.addSubview(stackView)
         stackView.fillSuperView(padding: .init(top: 44, left: 10, bottom: 0, right: 10), ratio: 1.0)
+        view.addSubview(maxPlayerView)
     }
     
-    @objc func goToPlayerView(sender: UIButton) {
-        // - MARK: pop up audio player view...
+    fileprivate func makeMaxPlayerView() -> MaxPlayerView{
+        let playerView = MaxPlayerView()
+        playerView.dataSource = self
+        playerView.setupLayout()
+        return playerView
+    }
+    
+    
+}
+
+
+extension EpisodeViewController: PlayerViewDataSource {
+    
+    func playerViewEpisode(_ playerView: PlayerView) -> Episode {
+        return episode
     }
 }

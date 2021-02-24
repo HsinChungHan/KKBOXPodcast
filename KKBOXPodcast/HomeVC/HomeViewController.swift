@@ -96,7 +96,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
 extension HomeViewController: EpisodeViewControllerDataSource {
+    
     func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode {
         guard let selectedeEpisode = vm.selectedEpisode else {
             fatalError("🚨 You have to select an episode cell!")
