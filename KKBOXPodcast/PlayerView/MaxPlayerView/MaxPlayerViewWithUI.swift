@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import AVKit
 
 extension MaxPlayerView {
     
@@ -25,6 +25,7 @@ extension MaxPlayerView {
         let minPlayerView = MinPlayerView()
         minPlayerView.alpha = 0.0
         minPlayerView.dataSource = self
+        minPlayerView.delegate = self
         minPlayerView.setupLayout()
         return minPlayerView
     }
@@ -33,24 +34,36 @@ extension MaxPlayerView {
         let imageView = UIImageView()
         let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
         imageView.sd_setImage(with: url)
+        imageView.transform = shrinkTransform
         return imageView
     }
     
-    func makeSlider() -> UISlider {
+    func makeTimeSlider() -> UISlider {
         let slider = UISlider()
+        slider.addTarget(self, action: #selector(handleTimeSlider(sender:)), for: .valueChanged)
         return slider
+    }
+    
+    @objc func handleTimeSlider(sender: UISlider) {
+        let percentage = sender.value
+        guard let duration = avPlayer.currentItem?.duration else { return }
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        let seekTimeInSeconds = Float64(percentage) * durationInSeconds
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000)
+        avPlayer.seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
     }
     
     func makeCurrentTimeLabel() -> BoldLabel {
         let label = BoldLabel()
-        label.setLabel(text: "00:00:00", numberOfLines: 1, fontSize: 12)
+        label.setLabel(text: "--:--:--", numberOfLines: 1, fontSize: 12)
         label.sizeToFit()
         return label
     }
     
     func makeDurationLabel() -> BoldLabel {
         let label = BoldLabel()
-        label.setLabel(text: "00:00:00", numberOfLines: 1, fontSize: 12)
+        
+        label.setLabel(text: "--:--:--", numberOfLines: 1, fontSize: 12)
         label.sizeToFit()
         return label
     }
@@ -79,13 +92,63 @@ extension MaxPlayerView {
     }
     
     @objc func pressPlayerButton(sender: UIButton) {
-        // - MARK: play or pause audio player view
+        if avPlayer.timeControlStatus == .paused {
+            avPlayer.play()
+            vm.setIsPlaying(isPlaying: true)
+        }else {
+            avPlayer.pause()
+            vm.setIsPlaying(isPlaying: false)
+        }
+    }
+    
+    func makeNextButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(R.image.next(), for: .normal)
+        button.addTarget(self, action: #selector(pressNextButton(sender:)), for: .touchUpInside)
+        return button
+    }
+    
+    @objc func pressNextButton(sender: UIButton) {
+        delegate?.maxPlayerViewGoToNextEpisode(self)
+    }
+    
+    func makeLastButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(R.image.last(), for: .normal)
+        button.addTarget(self, action: #selector(pressLastButton(sender:)), for: .touchUpInside)
+        return button
+    }
+    
+    @objc func pressLastButton(sender: UIButton) {
+        delegate?.maxPlayerViewGoToLastEpisode(self)
+    }
+    
+    func makeButtonsStackView() -> UIStackView {
+        let padding: CGFloat = 10.0
+        let stackView = UIStackView()
+        [lastButton, playButton, nextButton].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        
+        stackView.axis = .horizontal
+        stackView.spacing = padding
+        stackView.distribution = .fill
+        
+        lastButton.snp.makeConstraints {
+            $0.width.equalTo(80)
+        }
+        nextButton.snp.makeConstraints {
+            $0.width.equalTo(80)
+        }
+        
+        return stackView
     }
     
     func makeOverallStackView() -> UIStackView {
+        let buttonsStackView = makeButtonsStackView()
         let padding: CGFloat = 10.0
         let stackView = UIStackView()
-        [dismissButton, episodeImageView, slider, timeContainerView, titleLabel, playButton].forEach {
+        [dismissButton, episodeImageView, slider, timeContainerView, titleLabel, buttonsStackView].forEach {
             stackView.addArrangedSubview($0)
         }
         
@@ -114,7 +177,7 @@ extension MaxPlayerView {
         titleLabel.snp.makeConstraints {
             $0.height.equalTo(height)
         }
-        playButton.snp.makeConstraints {
+        buttonsStackView.snp.makeConstraints {
             $0.height.equalTo(height)
         }
         return stackView

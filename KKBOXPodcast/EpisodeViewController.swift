@@ -10,17 +10,32 @@ import UIKit
 
 protocol EpisodeViewControllerDataSource: AnyObject {
     func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode
+    func episodeViewControllerEpisodeIndex(_ episodeViewController: EpisodeViewController) -> Int
 }
 
+
+protocol EpisodeViewControllerDelegate: AnyObject {
+    func episodeViewControllerGoToLastEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int)
+    func episodeViewControllerGoToNextEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int)
+}
 
 class EpisodeViewController: UIViewController {
     
     weak var dataSource: EpisodeViewControllerDataSource?
+    weak var delegate: EpisodeViewControllerDelegate?
+    
     var episode: Episode {
         guard let dataSource = dataSource else {
             fatalError("🚨 You have to set dataSource for EpisodeViewController!")
         }
         return dataSource.episodeViewControllerEpisode(self)
+    }
+    
+    var currentEpisodeIndex: Int {
+        guard let dataSource = dataSource else {
+            fatalError("🚨 You have to set dataSource for EpisodeViewController!")
+        }
+        return dataSource.episodeViewControllerEpisodeIndex(self)
     }
     
     lazy var channelLabel = makeChannelLabel()
@@ -75,6 +90,8 @@ extension EpisodeViewController {
     
     @objc func goToPlayerView(sender: UIButton) {
         maxPlayerView.maxmizeMaxPlayerView()
+        maxPlayerView.setupAudioSession()
+        maxPlayerView.playEpisode()
     }
     
     fileprivate func setupLayout() {
@@ -118,6 +135,7 @@ extension EpisodeViewController {
     fileprivate func makeMaxPlayerView() -> MaxPlayerView{
         let playerView = MaxPlayerView()
         playerView.dataSource = self
+        playerView.delegate = self
         playerView.maxPlayerViewDataSource = self
         playerView.setupLayout()
         playerView.setupGestureRecognizer()
@@ -138,5 +156,17 @@ extension EpisodeViewController: MaxPlayerViewDataSource {
     
     func maxPlayerViewSuperview(_ maxPlayerView: MaxPlayerView) -> UIView {
         return view
+    }
+}
+
+
+extension EpisodeViewController: MaxPlayerViewDelegate {
+    
+    func maxPlayerViewGoToLastEpisode(_ maxPlayerView: MaxPlayerView) {
+        delegate?.episodeViewControllerGoToLastEpisode(self, selectedEpisodeIndex: currentEpisodeIndex + 1)
+    }
+    
+    func maxPlayerViewGoToNextEpisode(_ maxPlayerView: MaxPlayerView) {
+        delegate?.episodeViewControllerGoToNextEpisode(self, selectedEpisodeIndex: currentEpisodeIndex - 1)
     }
 }

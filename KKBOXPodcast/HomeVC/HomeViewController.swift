@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
         setupLayout()
         vm.fetchEpisodes()
         bindEpisodes()
+        bindSelectedIndex()
     }
 }
 
@@ -57,6 +58,25 @@ extension HomeViewController {
             self?.tableView.reloadData()
         }
     }
+    
+    fileprivate func bindSelectedIndex() {
+        vm.selectedEpisodeIndex.bind {[weak self] (selectedIndex) in
+            guard let selectedIndex = selectedIndex else {
+                print("🚨SelectedIndex is nil!")
+                return
+            }
+            self?.dismiss(animated: true)
+            self?.goToEpisode(selectedIndex: selectedIndex)
+        }
+    }
+    
+    // - FIXME: move to coordinator
+    fileprivate func goToEpisode(selectedIndex: Int) {
+        let episodeVC = EpisodeViewController()
+        episodeVC.dataSource = self
+        episodeVC.delegate = self
+        self.present(episodeVC, animated: true, completion: nil)
+    }
 }
 
 
@@ -86,23 +106,35 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let episodes = vm.episodes.value else {
-            return
-        }
-        let episodeVC = EpisodeViewController()
-        vm.selectedEpisode = episodes[indexPath.item]
-        episodeVC.dataSource = self
-        self.present(episodeVC, animated: true, completion: nil)
+        vm.setSelectedEpisodeIndex(selectedIndex: indexPath.item)
     }
 }
 
 
 extension HomeViewController: EpisodeViewControllerDataSource {
     
-    func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode {
-        guard let selectedeEpisode = vm.selectedEpisode else {
-            fatalError("🚨 You have to select an episode cell!")
+    func episodeViewControllerEpisodeIndex(_ episodeViewController: EpisodeViewController) -> Int {
+        guard let selectedIndex = vm.selectedEpisodeIndex.value else {
+            fatalError("🚨 You have to set selectedIndex!")
         }
-        return selectedeEpisode
+        return selectedIndex
+    }
+    
+    func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode {
+        guard let episodes = vm.episodes.value, let selectedIndex = vm.selectedEpisodeIndex.value else {
+            fatalError("🚨 You have to set episodes and selectedIndex!")
+        }
+        return episodes[selectedIndex]
+    }
+}
+
+
+extension HomeViewController: EpisodeViewControllerDelegate {
+    func episodeViewControllerGoToLastEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
+        vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
+    }
+    
+    func episodeViewControllerGoToNextEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
+        vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
     }
 }

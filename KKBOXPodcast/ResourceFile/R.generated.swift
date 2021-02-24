@@ -122,12 +122,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 4 files.
   struct file {
+    /// Resource file `last@2x.png`.
+    static let last2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "last@2x", pathExtension: "png")
+    /// Resource file `next@2x.png`.
+    static let next2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "next@2x", pathExtension: "png")
     /// Resource file `pause@2x.png`.
     static let pause2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "pause@2x", pathExtension: "png")
     /// Resource file `play@2x.png`.
     static let play2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "play@2x", pathExtension: "png")
+
+    /// `bundle.url(forResource: "last@2x", withExtension: "png")`
+    static func last2xPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.last2xPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "next@2x", withExtension: "png")`
+    static func next2xPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.next2xPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "pause@2x", withExtension: "png")`
     static func pause2xPng(_: Void = ()) -> Foundation.URL? {
@@ -144,12 +160,30 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
+    /// Image `last`.
+    static let last = Rswift.ImageResource(bundle: R.hostingBundle, name: "last")
+    /// Image `next`.
+    static let next = Rswift.ImageResource(bundle: R.hostingBundle, name: "next")
     /// Image `pause`.
     static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
     static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "last", bundle: ..., traitCollection: ...)`
+    static func last(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.last, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "next", bundle: ..., traitCollection: ...)`
+    static func next(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.next, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "pause", bundle: ..., traitCollection: ...)`

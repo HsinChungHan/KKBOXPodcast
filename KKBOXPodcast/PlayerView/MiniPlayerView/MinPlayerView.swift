@@ -8,7 +8,13 @@
 import UIKit
 
 
+protocol MinPlayerViewDelegate: AnyObject {
+    func minPlayerViewPressPlayerButton(_ minPlayerView: MinPlayerView)
+}
+
 class MinPlayerView: PlayerView {
+    
+    weak var delegate: MinPlayerViewDelegate?
     
     fileprivate lazy var episodeImageView = makeEpisodeImageView()
     fileprivate lazy var titleLabel = makeTitleLabel()
@@ -48,7 +54,11 @@ extension MinPlayerView {
     }
     
     @objc func pressPlayerButton(sender: UIButton) {
-        // - MARK: play or pause audio player view
+        guard let delegate = delegate else {
+            print("🚨 You have to set delegate for MinPlayerViewDelegate!")
+            return
+        }
+        delegate.minPlayerViewPressPlayerButton(self)
     }
     
     func setupLayout() {
@@ -74,5 +84,9 @@ extension MinPlayerView {
         titleLabel.snp.makeConstraints {
             $0.width.equalTo(titleWidth)
         }
+    }
+    
+    func setImageForPlayButton(image: UIImage) {
+        playButton.setImage(image, for: .normal)
     }
 }

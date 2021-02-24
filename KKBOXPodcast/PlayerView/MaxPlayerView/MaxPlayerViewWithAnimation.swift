@@ -59,7 +59,8 @@ extension MaxPlayerView {
     
     func setupGestureRecognizer() {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize(gesture:))))
-        overallStackView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanDismiss(gesture:))))
+//        overallStackView.
+        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePanDismiss(gesture:))))
         minPlayerView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handlePan(gesture:))))
     }
     
@@ -70,11 +71,11 @@ extension MaxPlayerView {
     @objc func handlePanDismiss(gesture: UIPanGestureRecognizer) {
         if gesture.state == .changed {
             let translation = gesture.translation(in: superView)
-            overallStackView.transform = CGAffineTransform(translationX: 0, y: translation.y)
+            transform = CGAffineTransform(translationX: 0, y: translation.y)
         } else if gesture.state == .ended {
             let translation = gesture.translation(in: superView)
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.overallStackView.transform = .identity
+                self.transform = .identity
                 if translation.y > 80 {
                     self.minimizeMaxPlayerView()
                 }
