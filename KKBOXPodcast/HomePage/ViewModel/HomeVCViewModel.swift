@@ -8,10 +8,18 @@
 import Foundation
 
 
+enum Action {
+    case GoToEpisode
+    case PlayEpisode
+}
+
+
 class HomeVCViewModel {
     
     let episodes = Bindable<[Episode]>.init(value: nil)
     let selectedEpisodeIndex = Bindable<Int>.init(value: nil)
+    
+    private(set) var action = Action.GoToEpisode
     
     func fetchEpisodes() {
         APIService.shared.fetchEpisodes { (episodes) in
@@ -34,5 +42,9 @@ class HomeVCViewModel {
         }else {
             print("This is the final episode!")
         }
+    }
+    
+    func setAction(action: Action) {
+        self.action = action
     }
 }

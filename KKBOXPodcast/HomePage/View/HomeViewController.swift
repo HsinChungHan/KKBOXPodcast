@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
 }
 
 
+// MARK: - Lazy Initialization
 extension HomeViewController {
     
     fileprivate func makeTableView() -> UITableView {
@@ -75,11 +76,16 @@ extension HomeViewController {
         let episodeVC = EpisodeViewController()
         episodeVC.dataSource = self
         episodeVC.delegate = self
-        self.present(episodeVC, animated: true, completion: nil)
+        self.present(episodeVC, animated: true) {
+            if self.vm.action == .PlayEpisode {
+                episodeVC.popMaxPlayerView()
+            }
+        }
     }
 }
 
 
+// MARK: - UITableView Protocol
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,10 +113,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vm.setSelectedEpisodeIndex(selectedIndex: indexPath.item)
+        vm.setAction(action: .GoToEpisode)
     }
 }
 
 
+// MARK: - EpisodeViewController Protocol
 extension HomeViewController: EpisodeViewControllerDataSource {
     
     func episodeViewControllerEpisodeIndex(_ episodeViewController: EpisodeViewController) -> Int {
@@ -130,11 +138,14 @@ extension HomeViewController: EpisodeViewControllerDataSource {
 
 
 extension HomeViewController: EpisodeViewControllerDelegate {
+    
     func episodeViewControllerGoToLastEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
+        vm.setAction(action: .PlayEpisode)
         vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
     }
     
     func episodeViewControllerGoToNextEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
+        vm.setAction(action: .PlayEpisode)
         vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
     }
 }

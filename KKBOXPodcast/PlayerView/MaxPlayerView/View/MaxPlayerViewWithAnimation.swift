@@ -8,7 +8,7 @@
 import UIKit
 
 
-// - MARK: Minimize and maxmize the player view
+// MARK: - Minimize and maxmize the player view
 extension MaxPlayerView {
     
     func setupConstraintsForMaxPlayerView() {
@@ -54,7 +54,7 @@ extension MaxPlayerView {
 }
 
 
-// - MARK: Minimize and maxmize the player view with gesture
+// MARK: - Minimize and maxmize the player view with gesture
 extension MaxPlayerView {
     
     func setupGestureRecognizer() {
@@ -113,3 +113,20 @@ extension MaxPlayerView {
     }
 }
 
+
+// MARK: - Basic Animation
+extension MaxPlayerView {
+    
+    func identityEpisodeImageView() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = .identity
+        })
+    }
+    
+    func shrinkEpisodeImageView() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = self.shrinkTransform
+        })
+    }
+    
+}

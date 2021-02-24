@@ -24,27 +24,26 @@ class EpisodeViewController: UIViewController {
     weak var dataSource: EpisodeViewControllerDataSource?
     weak var delegate: EpisodeViewControllerDelegate?
     
-    var episode: Episode {
+    fileprivate var episode: Episode {
         guard let dataSource = dataSource else {
             fatalError("🚨 You have to set dataSource for EpisodeViewController!")
         }
         return dataSource.episodeViewControllerEpisode(self)
     }
     
-    var currentEpisodeIndex: Int {
+    fileprivate var currentEpisodeIndex: Int {
         guard let dataSource = dataSource else {
             fatalError("🚨 You have to set dataSource for EpisodeViewController!")
         }
         return dataSource.episodeViewControllerEpisodeIndex(self)
     }
     
-    lazy var channelLabel = makeChannelLabel()
-    lazy var titleLabel = makeTitleLabel()
-    lazy var summaryLabelLabel = makeSummaryLabel()
-    lazy var episodeImageView = makeEpisodeImageView()
-    lazy var pushPlayerButton = makePushPlayerButton()
-    
-    lazy var maxPlayerView = makeMaxPlayerView()
+    fileprivate lazy var channelLabel = makeChannelLabel()
+    fileprivate lazy var titleLabel = makeTitleLabel()
+    fileprivate lazy var summaryLabelLabel = makeSummaryLabel()
+    fileprivate lazy var episodeImageView = makeEpisodeImageView()
+    fileprivate lazy var popMaxPlayerViewButton = makePopMaxPlayerViewButton()
+    fileprivate lazy var maxPlayerView = makeMaxPlayerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +53,7 @@ class EpisodeViewController: UIViewController {
 }
 
 
+// MARK: - Lazy initialzition
 extension EpisodeViewController {
     
     fileprivate func makeChannelLabel() -> BoldLabel {
@@ -81,14 +81,14 @@ extension EpisodeViewController {
         return label
     }
     
-    fileprivate func makePushPlayerButton() -> UIButton {
+    fileprivate func makePopMaxPlayerViewButton() -> UIButton {
         let button = UIButton(type: .system)
         button.setImage(R.image.play(), for: .normal)
-        button.addTarget(self, action: #selector(goToPlayerView(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(popMaxPlayerView(sender:)), for: .touchUpInside)
         return button
     }
     
-    @objc func goToPlayerView(sender: UIButton) {
+    @objc func popMaxPlayerView(sender: UIButton) {
         maxPlayerView.maxmizeMaxPlayerView()
         maxPlayerView.setupAudioSession()
         maxPlayerView.playEpisode()
@@ -102,7 +102,7 @@ extension EpisodeViewController {
         }
         
         let stackView = UIStackView()
-        [avatarContainerView, summaryLabelLabel, pushPlayerButton].forEach {
+        [avatarContainerView, summaryLabelLabel, popMaxPlayerViewButton].forEach {
             stackView.addArrangedSubview($0)
         }
         stackView.axis = .vertical
@@ -123,7 +123,7 @@ extension EpisodeViewController {
             $0.height.equalTo(height)
         }
         
-        pushPlayerButton.snp.makeConstraints {
+        popMaxPlayerViewButton.snp.makeConstraints {
             $0.height.equalTo(height)
         }
         
@@ -141,9 +141,14 @@ extension EpisodeViewController {
         playerView.setupGestureRecognizer()
         return playerView
     }
+    
+    func popMaxPlayerView() {
+        popMaxPlayerView(sender: popMaxPlayerViewButton)
+    }
 }
 
 
+// MARK: - PlayerView Protocol
 extension EpisodeViewController: PlayerViewDataSource {
     
     func playerViewEpisode(_ playerView: PlayerView) -> Episode {
@@ -152,6 +157,7 @@ extension EpisodeViewController: PlayerViewDataSource {
 }
 
 
+// MARK: - MaxPlayerView Protocol
 extension EpisodeViewController: MaxPlayerViewDataSource {
     
     func maxPlayerViewSuperview(_ maxPlayerView: MaxPlayerView) -> UIView {
