@@ -30,14 +30,11 @@ class EpisodeViewController: UIViewController {
     lazy var pushPlayerButton = makePushPlayerButton()
     
     lazy var maxPlayerView = makeMaxPlayerView()
-//    var maximizedTopAnchorConstraint: NSLayoutConstraint!
-//    var minimizedTopAnchorConstraint: NSLayoutConstraint!
-//    var bottomAnchorConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        maxPlayerView.setupConstraintsForMaxPlayerView(superView: view)
+        maxPlayerView.setupConstraintsForMaxPlayerView()
     }
 }
 
@@ -77,8 +74,7 @@ extension EpisodeViewController {
     }
     
     @objc func goToPlayerView(sender: UIButton) {
-        // - MARK: pop up audio player view...
-        maxPlayerView.maxmizeMaxPlayerView(superView: view)
+        maxPlayerView.maxmizeMaxPlayerView()
     }
     
     fileprivate func setupLayout() {
@@ -122,11 +118,11 @@ extension EpisodeViewController {
     fileprivate func makeMaxPlayerView() -> MaxPlayerView{
         let playerView = MaxPlayerView()
         playerView.dataSource = self
+        playerView.maxPlayerViewDataSource = self
         playerView.setupLayout()
+        playerView.setupGestureRecognizer()
         return playerView
     }
-    
-    
 }
 
 
@@ -134,5 +130,13 @@ extension EpisodeViewController: PlayerViewDataSource {
     
     func playerViewEpisode(_ playerView: PlayerView) -> Episode {
         return episode
+    }
+}
+
+
+extension EpisodeViewController: MaxPlayerViewDataSource {
+    
+    func maxPlayerViewSuperview(_ maxPlayerView: MaxPlayerView) -> UIView {
+        return view
     }
 }

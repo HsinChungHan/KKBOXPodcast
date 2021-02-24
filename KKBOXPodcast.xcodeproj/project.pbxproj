@@ -26,6 +26,8 @@
 		D1212B8F25E5F9B900A96A1C /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B8E25E5F9B900A96A1C /* PlayerView.swift */; };
 		D1212B9425E5FBFE00A96A1C /* MaxPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */; };
 		D1212B9925E5FC1700A96A1C /* MinPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B9825E5FC1700A96A1C /* MinPlayerView.swift */; };
+		D1212BA925E61E8100A96A1C /* MaxPlayerViewWithUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212BA825E61E8100A96A1C /* MaxPlayerViewWithUI.swift */; };
+		D1212BAE25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212BAD25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift */; };
 		D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */; };
 		D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */; };
 		D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0A25E4B0000057D42F /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 		D1212B8E25E5F9B900A96A1C /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerView.swift; sourceTree = "<group>"; };
 		D1212B9825E5FC1700A96A1C /* MinPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinPlayerView.swift; sourceTree = "<group>"; };
+		D1212BA825E61E8100A96A1C /* MaxPlayerViewWithUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerViewWithUI.swift; sourceTree = "<group>"; };
+		D1212BAD25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerViewWithAnimation.swift; sourceTree = "<group>"; };
 		D1CF5EFE25E4AFFD0057D42F /* KKBOXPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBOXPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -190,10 +194,28 @@
 			isa = PBXGroup;
 			children = (
 				D1212B8E25E5F9B900A96A1C /* PlayerView.swift */,
-				D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */,
-				D1212B9825E5FC1700A96A1C /* MinPlayerView.swift */,
+				D1212B9D25E61E4B00A96A1C /* MaxPlayerView */,
+				D1212BA125E61E5500A96A1C /* MiniPlayerView */,
 			);
 			path = PlayerView;
+			sourceTree = "<group>";
+		};
+		D1212B9D25E61E4B00A96A1C /* MaxPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */,
+				D1212BA825E61E8100A96A1C /* MaxPlayerViewWithUI.swift */,
+				D1212BAD25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift */,
+			);
+			path = MaxPlayerView;
+			sourceTree = "<group>";
+		};
+		D1212BA125E61E5500A96A1C /* MiniPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B9825E5FC1700A96A1C /* MinPlayerView.swift */,
+			);
+			path = MiniPlayerView;
 			sourceTree = "<group>";
 		};
 		D1CF5EF525E4AFFD0057D42F = {
@@ -520,10 +542,12 @@
 			files = (
 				D1212B2C25E5153300A96A1C /* HomeVCViewModel.swift in Sources */,
 				D1212B0B25E4E07100A96A1C /* Episode.swift in Sources */,
+				D1212BA925E61E8100A96A1C /* MaxPlayerViewWithUI.swift in Sources */,
 				D1212B4D25E5225D00A96A1C /* StringExtension.swift in Sources */,
 				D1212B8F25E5F9B900A96A1C /* PlayerView.swift in Sources */,
 				D1212AFF25E4E01E00A96A1C /* APIService.swift in Sources */,
 				D1212B7425E543E200A96A1C /* UIViewExtension.swift in Sources */,
+				D1212BAE25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift in Sources */,
 				D1212B3125E5155600A96A1C /* BIndable.swift in Sources */,
 				D1212B9925E5FC1700A96A1C /* MinPlayerView.swift in Sources */,
 				D1212B6F25E53CCB00A96A1C /* TextLabel.swift in Sources */,
