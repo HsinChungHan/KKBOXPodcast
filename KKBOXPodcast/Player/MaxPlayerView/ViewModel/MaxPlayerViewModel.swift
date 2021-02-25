@@ -14,6 +14,8 @@ class MaxPlayerViewModel {
     let currentTimeStr = Bindable<String>.init(value: nil)
     let durationTimeStr = Bindable<String>.init(value: nil)
     
+    private(set) var isUsingDownloadedEpisode = false
+    
     func setIsPlaying(isPlaying: Bool) {
         self.isPlaying.setValue(value: isPlaying)
     }
@@ -24,5 +26,9 @@ class MaxPlayerViewModel {
     
     func setDurationTimeStr(durationTimeStr: String) {
         self.durationTimeStr.setValue(value: durationTimeStr)
+    }
+    
+    func setIsUsingDownloadedEpisode(isUsingDownloadedEpisode: Bool) {
+        self.isUsingDownloadedEpisode = isUsingDownloadedEpisode
     }
 }

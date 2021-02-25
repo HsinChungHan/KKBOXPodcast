@@ -76,7 +76,7 @@ extension HomeViewController {
         let episodeVC = EpisodeViewController()
         episodeVC.dataSource = self
         episodeVC.delegate = self
-        self.present(episodeVC, animated: true) {
+        present(episodeVC, animated: true) {
             if self.vm.action == .PlayEpisode {
                 episodeVC.popMaxPlayerView()
             }
@@ -114,6 +114,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vm.setSelectedEpisodeIndex(selectedIndex: indexPath.item)
         vm.setAction(action: .GoToEpisode)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let item = UIContextualAction(style: .normal, title: nil) { [weak self] (contextualAction, view, boolValue) in
+            guard let self = self else {
+                return
+            }
+            print("Download and save episode into UserDefaults")
+            self.downloadEpisode(selectedIndex: indexPath.row)
+        }
+        item.image = R.image.download()
+        let swipeActions = UISwipeActionsConfiguration(actions: [item])
+        return swipeActions
+    }
+    
+    fileprivate func downloadEpisode(selectedIndex: Int) {
+        guard let episodes = self.vm.episodes.value else {
+            print("🚨 You have to set episodes!")
+            return
+        }
+        APIService.shared.downloadEpisode(episode: episodes[selectedIndex])
     }
 }
 

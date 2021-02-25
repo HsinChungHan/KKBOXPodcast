@@ -40,17 +40,34 @@ extension MaxPlayerView {
     
     func makeTimeSlider() -> UISlider {
         let slider = UISlider()
-        slider.addTarget(self, action: #selector(handleTimeSlider(sender:)), for: .valueChanged)
+        slider.addTarget(self, action: #selector(handleTimeSlider(sender:event:)), for: .valueChanged)
         return slider
     }
     
-    @objc func handleTimeSlider(sender: UISlider) {
-        let percentage = sender.value
-        guard let duration = avPlayer.currentItem?.duration else { return }
-        let durationInSeconds = CMTimeGetSeconds(duration)
-        let seekTimeInSeconds = Float64(percentage) * durationInSeconds
-        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000)
-        avPlayer.seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+    @objc func handleTimeSlider(sender: UISlider, event: UIEvent) {
+        if let touchEvent = event.allTouches?.first {
+            switch touchEvent.phase {
+            case .began:
+                if !vm.isUsingDownloadedEpisode {
+                    guard let downloadedEpisode = UserDefaults.standard.getEpisode(episode: episode) else {
+                        return
+                    }
+                    playEpisodeUsingFileUrl(downloadedEpisode: downloadedEpisode)
+                    vm.setIsUsingDownloadedEpisode(isUsingDownloadedEpisode: true)
+                }
+            case .moved:
+                let percentage = sender.value
+                guard let duration = avPlayer.currentItem?.duration else { return }
+                let durationInSeconds = CMTimeGetSeconds(duration)
+                let seekTimeInSeconds = Float64(percentage) * durationInSeconds
+                let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000)
+                avPlayer.seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+            case .ended:
+                avPlayer.play()
+            default:
+                break
+            }
+        }
     }
     
     func makeCurrentTimeLabel() -> BoldLabel {

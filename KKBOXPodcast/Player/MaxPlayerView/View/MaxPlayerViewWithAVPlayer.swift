@@ -29,15 +29,27 @@ extension MaxPlayerView {
     }
     
     func playEpisode() {
-        guard let url = URL(string: episode.streamUrl) else { return }
-        let playerItem = AVPlayerItem(url: url)
-        avPlayer.replaceCurrentItem(with: playerItem)
-        avPlayer.play()
+        guard let downloadedEpisode = UserDefaults.standard.getEpisode(episode: episode) else {
+            guard let url = URL(string: episode.streamUrl) else { return }
+            let playerItem = AVPlayerItem(url: url)
+            avPlayer.replaceCurrentItem(with: playerItem)
+            avPlayer.play()
+            APIService.shared.downloadEpisode(episode: episode)
+            return
+        }
+        playEpisodeUsingFileUrl(downloadedEpisode: downloadedEpisode)
     }
     
-    // - MARK: download episode
-    fileprivate func playEpisodeUsingFileUrl() {
-        
+    // - MARK: play downloaded episode
+    func playEpisodeUsingFileUrl(downloadedEpisode: Episode) {
+        guard let fileURL = URL(string: downloadedEpisode.fileUrl ?? "") else { return }
+        vm.setIsUsingDownloadedEpisode(isUsingDownloadedEpisode: true)
+        let fileName = fileURL.lastPathComponent
+        guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        trueLocation.appendPathComponent(fileName)
+        let playerItem = AVPlayerItem(url: trueLocation)
+        avPlayer.replaceCurrentItem(with: playerItem)
+        avPlayer.play()
     }
     
     func addInterruptionObserver() {
@@ -65,6 +77,7 @@ extension MaxPlayerView {
     
     @objc fileprivate func handlePlayerDidFinishPlaying(notification: Notification) {
         vm.setIsPlaying(isPlaying: false)
+        UserDefaults.standard.deleteEpisode(episode: episode)
         pressNextButton(sender: nextButton)
     }
     

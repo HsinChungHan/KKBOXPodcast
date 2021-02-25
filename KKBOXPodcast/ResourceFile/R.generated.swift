@@ -122,8 +122,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 4 files.
+  /// This `R.file` struct is generated, and contains static references to 5 files.
   struct file {
+    /// Resource file `download@2x.png`.
+    static let download2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "download@2x", pathExtension: "png")
     /// Resource file `last@2x.png`.
     static let last2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "last@2x", pathExtension: "png")
     /// Resource file `next@2x.png`.
@@ -132,6 +134,12 @@ struct R: Rswift.Validatable {
     static let pause2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "pause@2x", pathExtension: "png")
     /// Resource file `play@2x.png`.
     static let play2xPng = Rswift.FileResource(bundle: R.hostingBundle, name: "play@2x", pathExtension: "png")
+
+    /// `bundle.url(forResource: "download@2x", withExtension: "png")`
+    static func download2xPng(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.download2xPng
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "last@2x", withExtension: "png")`
     static func last2xPng(_: Void = ()) -> Foundation.URL? {
@@ -160,8 +168,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 4 images.
+  /// This `R.image` struct is generated, and contains static references to 5 images.
   struct image {
+    /// Image `download`.
+    static let download = Rswift.ImageResource(bundle: R.hostingBundle, name: "download")
     /// Image `last`.
     static let last = Rswift.ImageResource(bundle: R.hostingBundle, name: "last")
     /// Image `next`.
@@ -170,6 +180,13 @@ struct R: Rswift.Validatable {
     static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
     static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "download", bundle: ..., traitCollection: ...)`
+    static func download(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.download, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "last", bundle: ..., traitCollection: ...)`

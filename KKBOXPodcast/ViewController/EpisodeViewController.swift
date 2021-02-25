@@ -89,6 +89,7 @@ extension EpisodeViewController {
     }
     
     @objc func popMaxPlayerView(sender: UIButton) {
+        sender.isHidden = true
         maxPlayerView.maxmizeMaxPlayerView()
         maxPlayerView.setupAudioSession()
         maxPlayerView.playEpisode()
@@ -101,26 +102,25 @@ extension EpisodeViewController {
             avatarContainerView.addSubview($0)
         }
         
+        episodeImageView.fillSuperView()
+        channelLabel.constraint(top: avatarContainerView.snp.top, bottom: nil, leading: avatarContainerView.snp.leading, trailing: avatarContainerView.snp.trailing, padding: .init(top: 10, left: 10, bottom: 10, right: 0), size: .init(width: 0, height: 25))
+        titleLabel.constraint(top: channelLabel.snp.bottom, bottom: nil, leading: channelLabel.snp.leading, trailing: channelLabel.snp.trailing, padding: .init(top: 16, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 50))
+        
         let stackView = UIStackView()
         [avatarContainerView, summaryLabelLabel, popMaxPlayerViewButton].forEach {
             stackView.addArrangedSubview($0)
         }
         stackView.axis = .vertical
         stackView.spacing = 10
-        stackView.distribution = .fill
         
-        episodeImageView.fillSuperView()
-        channelLabel.constraint(top: avatarContainerView.snp.top, bottom: nil, leading: avatarContainerView.snp.leading, trailing: avatarContainerView.snp.trailing, padding: .init(top: 10, left: 10, bottom: 10, right: 0), size: .init(width: 0, height: 25))
-        titleLabel.constraint(top: channelLabel.snp.bottom, bottom: nil, leading: channelLabel.snp.leading, trailing: channelLabel.snp.trailing, padding: .init(top: 16, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 50))
-        
-        let height = UIScreen.main.bounds.height / 3
+        let height = UIScreen.main.bounds.height / 10
         
         avatarContainerView.snp.makeConstraints {
-            $0.height.equalTo(height)
+            $0.height.equalTo(height * 4)
         }
         
         summaryLabelLabel.snp.makeConstraints {
-            $0.height.equalTo(height)
+            $0.height.equalTo(height * 4)
         }
         
         popMaxPlayerViewButton.snp.makeConstraints {
