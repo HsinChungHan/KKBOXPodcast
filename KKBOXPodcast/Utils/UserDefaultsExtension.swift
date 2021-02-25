@@ -44,8 +44,8 @@ extension UserDefaults {
     
     func deleteEpisode(episode: Episode) {
         let downloadedEpisodes = self.getEpisodes()
-        let filteredEpisodes = downloadedEpisodes.filter { (episode) -> Bool in
-            return episode.title != episode.title
+        let filteredEpisodes = downloadedEpisodes.filter { (downloadedEpisode) -> Bool in
+            return episode.title != downloadedEpisode.title
         }
         do {
             let data = try JSONEncoder().encode(filteredEpisodes)

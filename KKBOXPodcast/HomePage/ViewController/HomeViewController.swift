@@ -116,17 +116,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         vm.setAction(action: .GoToEpisode)
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let item = UIContextualAction(style: .normal, title: nil) { [weak self] (contextualAction, view, boolValue) in
-            guard let self = self else {
-                return
-            }
-            print("Download and save episode into UserDefaults")
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let downloadAction = UITableViewRowAction(style: .normal, title: "Download") {[weak self] (_, _) in
+            guard let self = self else { return }
+            print("Start download episode into UserDefaults")
             self.downloadEpisode(selectedIndex: indexPath.row)
         }
-        item.image = R.image.download()
-        let swipeActions = UISwipeActionsConfiguration(actions: [item])
-        return swipeActions
+        return [downloadAction]
     }
     
     fileprivate func downloadEpisode(selectedIndex: Int) {
