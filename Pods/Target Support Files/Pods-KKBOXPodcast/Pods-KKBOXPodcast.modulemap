@@ -1,0 +1,6 @@
+framework module Pods_KKBOXPodcast {
+  umbrella header "Pods-KKBOXPodcast-umbrella.h"
+
+  export *
+  module * { export * }
+}

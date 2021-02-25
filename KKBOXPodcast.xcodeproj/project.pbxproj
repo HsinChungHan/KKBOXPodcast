@@ -3,18 +3,45 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E3C65F0D6B3D0FF2E685E80 /* Pods_KKBOXPodcastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F58E4F00A40641788533331 /* Pods_KKBOXPodcastTests.framework */; };
+		C80B79591EBD2F265D33B37C /* Pods_KKBOXPodcastUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469EDC4F0A038675EA702D16 /* Pods_KKBOXPodcastUITests.framework */; };
+		D1212AAB25E4BE6C00A96A1C /* pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1212AA925E4BE6C00A96A1C /* pause@2x.png */; };
+		D1212AAC25E4BE6C00A96A1C /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1212AAA25E4BE6C00A96A1C /* play@2x.png */; };
+		D1212AFF25E4E01E00A96A1C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212AFE25E4E01E00A96A1C /* APIService.swift */; };
+		D1212B0B25E4E07100A96A1C /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B0A25E4E07000A96A1C /* Episode.swift */; };
+		D1212B1A25E4E1ED00A96A1C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B1925E4E1ED00A96A1C /* HomeViewController.swift */; };
+		D1212B2725E4E50500A96A1C /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B2625E4E50500A96A1C /* EpisodeCell.swift */; };
+		D1212B2C25E5153300A96A1C /* HomeVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B2B25E5153300A96A1C /* HomeVCViewModel.swift */; };
+		D1212B3125E5155600A96A1C /* BIndable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B3025E5155600A96A1C /* BIndable.swift */; };
+		D1212B4D25E5225D00A96A1C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B4C25E5225D00A96A1C /* StringExtension.swift */; };
+		D1212B5225E5228B00A96A1C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B5125E5228B00A96A1C /* DateExtension.swift */; };
+		D1212B6725E53AFD00A96A1C /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */; };
+		D1212B6F25E53CCB00A96A1C /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B6E25E53CCB00A96A1C /* TextLabel.swift */; };
+		D1212B7425E543E200A96A1C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B7325E543E200A96A1C /* UIViewExtension.swift */; };
+		D1212B8F25E5F9B900A96A1C /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B8E25E5F9B900A96A1C /* PlayerView.swift */; };
+		D1212B9425E5FBFE00A96A1C /* MaxPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */; };
+		D1212B9925E5FC1700A96A1C /* MinPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B9825E5FC1700A96A1C /* MinPlayerView.swift */; };
+		D1212BA925E61E8100A96A1C /* MaxPlayerViewWithUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212BA825E61E8100A96A1C /* MaxPlayerViewWithUI.swift */; };
+		D1212BAE25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212BAD25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift */; };
+		D1212BB625E6841F00A96A1C /* MaxPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212BB525E6841F00A96A1C /* MaxPlayerViewModel.swift */; };
+		D1212BBE25E697A800A96A1C /* CMTimeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212BBD25E697A800A96A1C /* CMTimeExtension.swift */; };
+		D1212BF625E6B66400A96A1C /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212BF525E6B66400A96A1C /* R.generated.swift */; };
+		D1212BFF25E6B69D00A96A1C /* last@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1212BFD25E6B69C00A96A1C /* last@2x.png */; };
+		D1212C0025E6B69D00A96A1C /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1212BFE25E6B69C00A96A1C /* next@2x.png */; };
+		D1212C1925E6DD2F00A96A1C /* MaxPlayerViewWithAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212C1825E6DD2F00A96A1C /* MaxPlayerViewWithAVPlayer.swift */; };
+		D1212C4C25E7408D00A96A1C /* download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1212C4B25E7408D00A96A1C /* download@2x.png */; };
+		D1212C5125E74CB900A96A1C /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212C5025E74CB900A96A1C /* UserDefaultsExtension.swift */; };
 		D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */; };
 		D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */; };
-		D1CF5F0625E4AFFD0057D42F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0525E4AFFD0057D42F /* ViewController.swift */; };
-		D1CF5F0925E4AFFD0057D42F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0725E4AFFD0057D42F /* Main.storyboard */; };
 		D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0A25E4B0000057D42F /* Assets.xcassets */; };
 		D1CF5F0E25E4B0000057D42F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0C25E4B0000057D42F /* LaunchScreen.storyboard */; };
 		D1CF5F1925E4B0010057D42F /* KKBOXPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F1825E4B0010057D42F /* KKBOXPodcastTests.swift */; };
 		D1CF5F2425E4B0010057D42F /* KKBOXPodcastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F2325E4B0010057D42F /* KKBOXPodcastUITests.swift */; };
+		F8266306C767905DF2153C96 /* Pods_KKBOXPodcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4370EBE5D9028EAE939280DF /* Pods_KKBOXPodcast.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +62,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B3CDFA66B019061E5532AFA /* Pods-KKBOXPodcastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKBOXPodcastTests.release.xcconfig"; path = "Target Support Files/Pods-KKBOXPodcastTests/Pods-KKBOXPodcastTests.release.xcconfig"; sourceTree = "<group>"; };
+		40C5FB07725AED3E92F22B7E /* Pods-KKBOXPodcastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKBOXPodcastTests.debug.xcconfig"; path = "Target Support Files/Pods-KKBOXPodcastTests/Pods-KKBOXPodcastTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4370EBE5D9028EAE939280DF /* Pods_KKBOXPodcast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KKBOXPodcast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		45299E3DCC1B65B104D86FFF /* Pods-KKBOXPodcastUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKBOXPodcastUITests.debug.xcconfig"; path = "Target Support Files/Pods-KKBOXPodcastUITests/Pods-KKBOXPodcastUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		469EDC4F0A038675EA702D16 /* Pods_KKBOXPodcastUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KKBOXPodcastUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		69EB74F11C792792B290938E /* Pods-KKBOXPodcastUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKBOXPodcastUITests.release.xcconfig"; path = "Target Support Files/Pods-KKBOXPodcastUITests/Pods-KKBOXPodcastUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6F58E4F00A40641788533331 /* Pods_KKBOXPodcastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KKBOXPodcastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		754AABBA8160BFB3D2FAF9B8 /* Pods-KKBOXPodcast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKBOXPodcast.debug.xcconfig"; path = "Target Support Files/Pods-KKBOXPodcast/Pods-KKBOXPodcast.debug.xcconfig"; sourceTree = "<group>"; };
+		D1212AA925E4BE6C00A96A1C /* pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pause@2x.png"; sourceTree = "<group>"; };
+		D1212AAA25E4BE6C00A96A1C /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
+		D1212AFE25E4E01E00A96A1C /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		D1212B0A25E4E07000A96A1C /* Episode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		D1212B1925E4E1ED00A96A1C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D1212B2625E4E50500A96A1C /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		D1212B2B25E5153300A96A1C /* HomeVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCViewModel.swift; sourceTree = "<group>"; };
+		D1212B3025E5155600A96A1C /* BIndable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIndable.swift; sourceTree = "<group>"; };
+		D1212B4C25E5225D00A96A1C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		D1212B5125E5228B00A96A1C /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
+		D1212B6E25E53CCB00A96A1C /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
+		D1212B7325E543E200A96A1C /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		D1212B8E25E5F9B900A96A1C /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerView.swift; sourceTree = "<group>"; };
+		D1212B9825E5FC1700A96A1C /* MinPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinPlayerView.swift; sourceTree = "<group>"; };
+		D1212BA825E61E8100A96A1C /* MaxPlayerViewWithUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerViewWithUI.swift; sourceTree = "<group>"; };
+		D1212BAD25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerViewWithAnimation.swift; sourceTree = "<group>"; };
+		D1212BB525E6841F00A96A1C /* MaxPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerViewModel.swift; sourceTree = "<group>"; };
+		D1212BBD25E697A800A96A1C /* CMTimeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTimeExtension.swift; sourceTree = "<group>"; };
+		D1212BF525E6B66400A96A1C /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		D1212BFD25E6B69C00A96A1C /* last@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "last@2x.png"; sourceTree = "<group>"; };
+		D1212BFE25E6B69C00A96A1C /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
+		D1212C1825E6DD2F00A96A1C /* MaxPlayerViewWithAVPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxPlayerViewWithAVPlayer.swift; sourceTree = "<group>"; };
+		D1212C4B25E7408D00A96A1C /* download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "download@2x.png"; sourceTree = "<group>"; };
+		D1212C5025E74CB900A96A1C /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		D1CF5EFE25E4AFFD0057D42F /* KKBOXPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBOXPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D1CF5F0525E4AFFD0057D42F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D1CF5F0825E4AFFD0057D42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1CF5F0A25E4B0000057D42F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1CF5F0D25E4B0000057D42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1CF5F0F25E4B0000057D42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +108,7 @@
 		D1CF5F1F25E4B0010057D42F /* KKBOXPodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KKBOXPodcastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F2325E4B0010057D42F /* KKBOXPodcastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBOXPodcastUITests.swift; sourceTree = "<group>"; };
 		D1CF5F2525E4B0010057D42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EDC629500C7CE46434F42FD6 /* Pods-KKBOXPodcast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKBOXPodcast.release.xcconfig"; path = "Target Support Files/Pods-KKBOXPodcast/Pods-KKBOXPodcast.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8266306C767905DF2153C96 /* Pods_KKBOXPodcast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E3C65F0D6B3D0FF2E685E80 /* Pods_KKBOXPodcastTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +132,166 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C80B79591EBD2F265D33B37C /* Pods_KKBOXPodcastUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD60211BE298F339B1A574CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4370EBE5D9028EAE939280DF /* Pods_KKBOXPodcast.framework */,
+				6F58E4F00A40641788533331 /* Pods_KKBOXPodcastTests.framework */,
+				469EDC4F0A038675EA702D16 /* Pods_KKBOXPodcastUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D1212B0925E4E06800A96A1C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B0A25E4E07000A96A1C /* Episode.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D1212B1525E4E1D800A96A1C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D1212AFE25E4E01E00A96A1C /* APIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D1212B3825E5203400A96A1C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B3025E5155600A96A1C /* BIndable.swift */,
+				D1212B4C25E5225D00A96A1C /* StringExtension.swift */,
+				D1212B5125E5228B00A96A1C /* DateExtension.swift */,
+				D1212B6E25E53CCB00A96A1C /* TextLabel.swift */,
+				D1212B7325E543E200A96A1C /* UIViewExtension.swift */,
+				D1212BBD25E697A800A96A1C /* CMTimeExtension.swift */,
+				D1212C5025E74CB900A96A1C /* UserDefaultsExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D1212B5625E5239C00A96A1C /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				D1212C3F25E73E6900A96A1C /* ViewController */,
+				D1212C2B25E6DFC000A96A1C /* View */,
+				D1212C2F25E6DFC800A96A1C /* ViewModel */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		D1212B5A25E523C000A96A1C /* ResourceFile */ = {
+			isa = PBXGroup;
+			children = (
+				D1212BF525E6B66400A96A1C /* R.generated.swift */,
+			);
+			path = ResourceFile;
+			sourceTree = "<group>";
+		};
+		D1212B6525E53AE600A96A1C /* EpisodePage */ = {
+			isa = PBXGroup;
+			children = (
+				D1212C4025E73E7900A96A1C /* ViewController */,
+				D1212B8A25E5F99200A96A1C /* Player */,
+			);
+			name = EpisodePage;
+			sourceTree = "<group>";
+		};
+		D1212B8A25E5F99200A96A1C /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				D1212C4725E73EAA00A96A1C /* PlayerView */,
+				D1212B9D25E61E4B00A96A1C /* MaxPlayerView */,
+				D1212BA125E61E5500A96A1C /* MiniPlayerView */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		D1212B9D25E61E4B00A96A1C /* MaxPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				D1212C2025E6DF8D00A96A1C /* ViewModel */,
+				D1212C2425E6DF9900A96A1C /* View */,
+			);
+			path = MaxPlayerView;
+			sourceTree = "<group>";
+		};
+		D1212BA125E61E5500A96A1C /* MiniPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B9825E5FC1700A96A1C /* MinPlayerView.swift */,
+			);
+			path = MiniPlayerView;
+			sourceTree = "<group>";
+		};
+		D1212C2025E6DF8D00A96A1C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D1212BB525E6841F00A96A1C /* MaxPlayerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D1212C2425E6DF9900A96A1C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */,
+				D1212C1825E6DD2F00A96A1C /* MaxPlayerViewWithAVPlayer.swift */,
+				D1212BA825E61E8100A96A1C /* MaxPlayerViewWithUI.swift */,
+				D1212BAD25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1212C2B25E6DFC000A96A1C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B2625E4E50500A96A1C /* EpisodeCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1212C2F25E6DFC800A96A1C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B2B25E5153300A96A1C /* HomeVCViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D1212C3F25E73E6900A96A1C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B1925E4E1ED00A96A1C /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D1212C4025E73E7900A96A1C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D1212C4725E73EAA00A96A1C /* PlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				D1212B8E25E5F9B900A96A1C /* PlayerView.swift */,
+			);
+			path = PlayerView;
+			sourceTree = "<group>";
+		};
 		D1CF5EF525E4AFFD0057D42F = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +299,8 @@
 				D1CF5F1725E4B0010057D42F /* KKBOXPodcastTests */,
 				D1CF5F2225E4B0010057D42F /* KKBOXPodcastUITests */,
 				D1CF5EFF25E4AFFD0057D42F /* Products */,
+				F9EDF359EF9ACFB852FC203D /* Pods */,
+				AD60211BE298F339B1A574CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +317,15 @@
 		D1CF5F0025E4AFFD0057D42F /* KKBOXPodcast */ = {
 			isa = PBXGroup;
 			children = (
+				D1212B5A25E523C000A96A1C /* ResourceFile */,
+				D1CF5F4D25E4BBD90057D42F /* Resources */,
+				D1212B1525E4E1D800A96A1C /* Service */,
+				D1212B0925E4E06800A96A1C /* Models */,
+				D1212B3825E5203400A96A1C /* Utils */,
+				D1212B5625E5239C00A96A1C /* HomePage */,
+				D1212B6525E53AE600A96A1C /* EpisodePage */,
 				D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */,
 				D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */,
-				D1CF5F0525E4AFFD0057D42F /* ViewController.swift */,
-				D1CF5F0725E4AFFD0057D42F /* Main.storyboard */,
 				D1CF5F0A25E4B0000057D42F /* Assets.xcassets */,
 				D1CF5F0C25E4B0000057D42F /* LaunchScreen.storyboard */,
 				D1CF5F0F25E4B0000057D42F /* Info.plist */,
@@ -128,6 +351,31 @@
 			path = KKBOXPodcastUITests;
 			sourceTree = "<group>";
 		};
+		D1CF5F4D25E4BBD90057D42F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D1212C4B25E7408D00A96A1C /* download@2x.png */,
+				D1212BFD25E6B69C00A96A1C /* last@2x.png */,
+				D1212BFE25E6B69C00A96A1C /* next@2x.png */,
+				D1212AA925E4BE6C00A96A1C /* pause@2x.png */,
+				D1212AAA25E4BE6C00A96A1C /* play@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F9EDF359EF9ACFB852FC203D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				754AABBA8160BFB3D2FAF9B8 /* Pods-KKBOXPodcast.debug.xcconfig */,
+				EDC629500C7CE46434F42FD6 /* Pods-KKBOXPodcast.release.xcconfig */,
+				40C5FB07725AED3E92F22B7E /* Pods-KKBOXPodcastTests.debug.xcconfig */,
+				1B3CDFA66B019061E5532AFA /* Pods-KKBOXPodcastTests.release.xcconfig */,
+				45299E3DCC1B65B104D86FFF /* Pods-KKBOXPodcastUITests.debug.xcconfig */,
+				69EB74F11C792792B290938E /* Pods-KKBOXPodcastUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +383,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1CF5F2825E4B0010057D42F /* Build configuration list for PBXNativeTarget "KKBOXPodcast" */;
 			buildPhases = (
+				A37F7CA3F7ACE89FC6D2BCD9 /* [CP] Check Pods Manifest.lock */,
+				D1CF5F4625E4B95D0057D42F /* ShellScript */,
 				D1CF5EFA25E4AFFD0057D42F /* Sources */,
 				D1CF5EFB25E4AFFD0057D42F /* Frameworks */,
 				D1CF5EFC25E4AFFD0057D42F /* Resources */,
+				3FA354758B886BB494312E57 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +403,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1CF5F2B25E4B0010057D42F /* Build configuration list for PBXNativeTarget "KKBOXPodcastTests" */;
 			buildPhases = (
+				28CF3B97D3FF1F0A9D2BC138 /* [CP] Check Pods Manifest.lock */,
 				D1CF5F1025E4B0010057D42F /* Sources */,
 				D1CF5F1125E4B0010057D42F /* Frameworks */,
 				D1CF5F1225E4B0010057D42F /* Resources */,
@@ -170,6 +422,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D1CF5F2E25E4B0010057D42F /* Build configuration list for PBXNativeTarget "KKBOXPodcastUITests" */;
 			buildPhases = (
+				9DF08F62A58A43FB9E803E98 /* [CP] Check Pods Manifest.lock */,
 				D1CF5F1B25E4B0010057D42F /* Sources */,
 				D1CF5F1C25E4B0010057D42F /* Frameworks */,
 				D1CF5F1D25E4B0010057D42F /* Resources */,
@@ -231,9 +484,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1212AAC25E4BE6C00A96A1C /* play@2x.png in Resources */,
 				D1CF5F0E25E4B0000057D42F /* LaunchScreen.storyboard in Resources */,
+				D1212BFF25E6B69D00A96A1C /* last@2x.png in Resources */,
 				D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */,
-				D1CF5F0925E4AFFD0057D42F /* Main.storyboard in Resources */,
+				D1212C4C25E7408D00A96A1C /* download@2x.png in Resources */,
+				D1212AAB25E4BE6C00A96A1C /* pause@2x.png in Resources */,
+				D1212C0025E6B69D00A96A1C /* next@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +510,139 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		28CF3B97D3FF1F0A9D2BC138 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KKBOXPodcastTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FA354758B886BB494312E57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcast/Pods-KKBOXPodcast-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcast/Pods-KKBOXPodcast-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcast/Pods-KKBOXPodcast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DF08F62A58A43FB9E803E98 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KKBOXPodcastUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A37F7CA3F7ACE89FC6D2BCD9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KKBOXPodcast-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1CF5F4625E4B95D0057D42F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/$PROJECT_NAME/ResourceFile/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/$PROJECT_NAME/ResourceFile/R.generated.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D1CF5EFA25E4AFFD0057D42F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1CF5F0625E4AFFD0057D42F /* ViewController.swift in Sources */,
+				D1212B2C25E5153300A96A1C /* HomeVCViewModel.swift in Sources */,
+				D1212B0B25E4E07100A96A1C /* Episode.swift in Sources */,
+				D1212BA925E61E8100A96A1C /* MaxPlayerViewWithUI.swift in Sources */,
+				D1212B4D25E5225D00A96A1C /* StringExtension.swift in Sources */,
+				D1212B8F25E5F9B900A96A1C /* PlayerView.swift in Sources */,
+				D1212AFF25E4E01E00A96A1C /* APIService.swift in Sources */,
+				D1212C1925E6DD2F00A96A1C /* MaxPlayerViewWithAVPlayer.swift in Sources */,
+				D1212B7425E543E200A96A1C /* UIViewExtension.swift in Sources */,
+				D1212BAE25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift in Sources */,
+				D1212BF625E6B66400A96A1C /* R.generated.swift in Sources */,
+				D1212B3125E5155600A96A1C /* BIndable.swift in Sources */,
+				D1212BBE25E697A800A96A1C /* CMTimeExtension.swift in Sources */,
+				D1212B9925E5FC1700A96A1C /* MinPlayerView.swift in Sources */,
+				D1212BB625E6841F00A96A1C /* MaxPlayerViewModel.swift in Sources */,
+				D1212C5125E74CB900A96A1C /* UserDefaultsExtension.swift in Sources */,
+				D1212B6F25E53CCB00A96A1C /* TextLabel.swift in Sources */,
 				D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */,
+				D1212B5225E5228B00A96A1C /* DateExtension.swift in Sources */,
 				D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */,
+				D1212B2725E4E50500A96A1C /* EpisodeCell.swift in Sources */,
+				D1212B9425E5FBFE00A96A1C /* MaxPlayerView.swift in Sources */,
+				D1212B1A25E4E1ED00A96A1C /* HomeViewController.swift in Sources */,
+				D1212B6725E53AFD00A96A1C /* EpisodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,14 +678,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D1CF5F0725E4AFFD0057D42F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D1CF5F0825E4AFFD0057D42F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D1CF5F0C25E4B0000057D42F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -433,12 +807,14 @@
 		};
 		D1CF5F2925E4B0010057D42F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 754AABBA8160BFB3D2FAF9B8 /* Pods-KKBOXPodcast.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WAGW44Z6JC;
 				INFOPLIST_FILE = KKBOXPodcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,12 +828,14 @@
 		};
 		D1CF5F2A25E4B0010057D42F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDC629500C7CE46434F42FD6 /* Pods-KKBOXPodcast.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WAGW44Z6JC;
 				INFOPLIST_FILE = KKBOXPodcast/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -471,6 +849,7 @@
 		};
 		D1CF5F2C25E4B0010057D42F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40C5FB07725AED3E92F22B7E /* Pods-KKBOXPodcastTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -493,6 +872,7 @@
 		};
 		D1CF5F2D25E4B0010057D42F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B3CDFA66B019061E5532AFA /* Pods-KKBOXPodcastTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +895,7 @@
 		};
 		D1CF5F2F25E4B0010057D42F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45299E3DCC1B65B104D86FFF /* Pods-KKBOXPodcastUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -535,6 +916,7 @@
 		};
 		D1CF5F3025E4B0010057D42F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69EB74F11C792792B290938E /* Pods-KKBOXPodcastUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
