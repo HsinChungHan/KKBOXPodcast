@@ -129,8 +129,11 @@ extension PodcastPlayer {
     
     // - MARK: play downloaded episode
     fileprivate func playEpisodeUsingFileUrl(downloadedEpisode: Episode) {
-        guard let fileURL = URL(string: downloadedEpisode.fileUrl ?? "") else { return }
-//        vm.isUsingDownloadedEpisode = true
+        guard
+            let fileUrl = downloadedEpisode.fileUrl,
+            let fileURL = URL(string: fileUrl)
+        else { return }
+        
         let fileName = fileURL.lastPathComponent
         guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         trueLocation.appendPathComponent(fileName)

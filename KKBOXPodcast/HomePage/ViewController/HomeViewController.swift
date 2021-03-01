@@ -111,7 +111,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vm.setSelectedEpisodeIndex(selectedIndex: indexPath.item)
-        vm.setAction(action: .GoToEpisode)
+        vm.action = .GoToEpisode
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -155,12 +155,12 @@ extension HomeViewController: EpisodeViewControllerDataSource {
 extension HomeViewController: EpisodeViewControllerDelegate {
     
     func episodeViewControllerGoToLastEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
-        vm.setAction(action: .PlayEpisode)
+        vm.action = .PlayEpisode
         vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
     }
     
     func episodeViewControllerGoToNextEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
-        vm.setAction(action: .PlayEpisode)
+        vm.action = .PlayEpisode
         vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
     }
 }
