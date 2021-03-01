@@ -13,7 +13,7 @@ import UIKit
 extension MaxPlayerView {
     
     func makeAVPlayer() -> AVPlayer {
-        let player = AVPlayer()
+        let player = PodcastPlayer(dataSource: self, delegate: self)
         player.automaticallyWaitsToMinimizeStalling = false
         return player
     }
@@ -100,4 +100,40 @@ extension MaxPlayerView {
             self?.vm.setDurationTimeStr(durationTimeStr: durationTime.toString())
         }
     }
+}
+
+
+extension MaxPlayerView: PodcastPlayerDataSource, PodcastPlayerDelegate {
+    
+    func podcastPlayerEpisode(_ podcastPlayer: PodcastPlayer) -> Episode {
+        return episode
+    }
+    
+    func podcastPlayerHandlePlaying(_ podcastPlayer: PodcastPlayer, episode: Episode) {
+        
+    }
+    
+    func podcastPlayerHandleInterruption(_ podcastPlayer: PodcastPlayer, status: PodcastPlayerStatus) {
+        switch status {
+        case .playing:
+            vm.setIsPlaying(isPlaying: true)
+        case .stop:
+            vm.setIsPlaying(isPlaying: false)
+        }
+    }
+    
+    func podcastPlayerHandleObserveDidFinishPlaying(_ podcastPlayer: PodcastPlayer, notification: Notification) {
+        
+    }
+    
+    func podcastPlayerHandleObserveEpisodeBoundaryTime(_ podcastPlayer: PodcastPlayer, times: [NSValue]) {
+        
+    }
+    
+    func podcastPlayerHandleObservePeriodicTime(_ podcastPlayer: PodcastPlayer, timeInterval: CMTime) {
+        
+    }
+    
+    
+    
 }
