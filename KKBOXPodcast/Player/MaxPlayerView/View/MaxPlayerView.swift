@@ -57,15 +57,17 @@ class MaxPlayerView: PlayerView {
     
     var panGesture: UIPanGestureRecognizer!
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        backgroundColor = .white
+    init(playerViewDataSource: PlayerViewDataSource, maxPlayerViewDataSource: MaxPlayerViewDataSource, maxPlayerViewDelegate: MaxPlayerViewDelegate) {
+        self.maxPlayerViewDataSource = maxPlayerViewDataSource
+        self.delegate = maxPlayerViewDelegate
+        super.init(playerViewDataSource: playerViewDataSource)
         
         addBoundaryTimeObserver()
         addPlayerDidFinishObserver()
         addAVPlayerCurrentTimeObserver()
-        
         bindUIComponent()
+        setupLayout()
+        setupGestureRecognizer()
     }
     
     required init?(coder: NSCoder) {

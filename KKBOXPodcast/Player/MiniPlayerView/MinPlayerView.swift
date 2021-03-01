@@ -20,9 +20,10 @@ class MinPlayerView: PlayerView {
     fileprivate lazy var titleLabel = makeTitleLabel()
     fileprivate lazy var playButton = makePlayButton()
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        backgroundColor = .white
+    init(playerViewDataSource: PlayerViewDataSource, minPlayerViewDelegate: MinPlayerViewDelegate) {
+        self.delegate = minPlayerViewDelegate
+        super.init(playerViewDataSource: playerViewDataSource)
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -62,6 +63,8 @@ extension MinPlayerView {
     }
     
     func setupLayout() {
+        backgroundColor = .white
+        alpha = 0.0
         let stackView = UIStackView()
         [episodeImageView, titleLabel, playButton].forEach {
             stackView.addArrangedSubview($0)

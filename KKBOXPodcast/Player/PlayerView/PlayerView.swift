@@ -14,6 +14,16 @@ protocol PlayerViewDataSource: AnyObject {
 
 class PlayerView: UIView {
     weak var dataSource: PlayerViewDataSource?
+    
+    init(playerViewDataSource: PlayerViewDataSource) {
+        self.dataSource = playerViewDataSource
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var episode: Episode {
         guard let dataSource = dataSource else {
             fatalError("🚨 You have to set dataSource for PlayerView!")

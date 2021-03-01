@@ -45,6 +45,16 @@ class EpisodeViewController: UIViewController {
     fileprivate lazy var popMaxPlayerViewButton = makePopMaxPlayerViewButton()
     fileprivate lazy var maxPlayerView = makeMaxPlayerView()
     
+    init(dataSource: EpisodeViewControllerDataSource, delegate: EpisodeViewControllerDelegate) {
+        self.dataSource = dataSource
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -133,12 +143,7 @@ extension EpisodeViewController {
     }
     
     fileprivate func makeMaxPlayerView() -> MaxPlayerView{
-        let playerView = MaxPlayerView()
-        playerView.dataSource = self
-        playerView.delegate = self
-        playerView.maxPlayerViewDataSource = self
-        playerView.setupLayout()
-        playerView.setupGestureRecognizer()
+        let playerView = MaxPlayerView.init(playerViewDataSource: self, maxPlayerViewDataSource: self, maxPlayerViewDelegate: self)
         return playerView
     }
     

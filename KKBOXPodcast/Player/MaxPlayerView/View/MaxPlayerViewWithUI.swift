@@ -22,11 +22,7 @@ extension MaxPlayerView {
     }
     
     func makeMinPlayerView() -> MinPlayerView {
-        let minPlayerView = MinPlayerView()
-        minPlayerView.alpha = 0.0
-        minPlayerView.dataSource = self
-        minPlayerView.delegate = self
-        minPlayerView.setupLayout()
+        let minPlayerView = MinPlayerView(playerViewDataSource: self, minPlayerViewDelegate: self)
         return minPlayerView
     }
     
@@ -201,6 +197,8 @@ extension MaxPlayerView {
     }
     
     func setupLayout() {
+        backgroundColor = .white
+        
         let padding: CGFloat = 10.0
         addSubview(overallStackView)
         overallStackView.fillSuperView(padding: .init(top: padding, left: padding, bottom: padding, right: padding), ratio: 1.0)

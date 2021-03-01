@@ -73,9 +73,7 @@ extension HomeViewController {
     
     // - FIXME: move to coordinator
     fileprivate func goToEpisode(selectedIndex: Int) {
-        let episodeVC = EpisodeViewController()
-        episodeVC.dataSource = self
-        episodeVC.delegate = self
+        let episodeVC = EpisodeViewController(dataSource: self, delegate: self)
         present(episodeVC, animated: true) {
             if self.vm.action == .PlayEpisode {
                 episodeVC.popMaxPlayerView()
