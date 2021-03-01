@@ -101,7 +101,6 @@ extension EpisodeViewController {
     @objc func popMaxPlayerView(sender: UIButton) {
         sender.isHidden = true
         maxPlayerView.maxmizeMaxPlayerView()
-        maxPlayerView.setupAudioSession()
         maxPlayerView.playEpisode()
     }
     
@@ -144,6 +143,7 @@ extension EpisodeViewController {
     
     fileprivate func makeMaxPlayerView() -> MaxPlayerView{
         let playerView = MaxPlayerView.init(playerViewDataSource: self, maxPlayerViewDataSource: self, maxPlayerViewDelegate: self)
+        
         return playerView
     }
     

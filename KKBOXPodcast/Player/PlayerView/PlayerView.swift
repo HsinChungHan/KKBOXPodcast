@@ -9,10 +9,13 @@ import UIKit
 
 
 protocol PlayerViewDataSource: AnyObject {
+    
     func playerViewEpisode(_ playerView: PlayerView) -> Episode
 }
 
+
 class PlayerView: UIView {
+    
     weak var playerViewDataSource: PlayerViewDataSource?
     
     init(playerViewDataSource: PlayerViewDataSource) {

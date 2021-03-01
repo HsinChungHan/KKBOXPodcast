@@ -43,25 +43,12 @@ extension MaxPlayerView {
     @objc func handleTimeSlider(sender: UISlider, event: UIEvent) {
         if let touchEvent = event.allTouches?.first {
             switch touchEvent.phase {
-            case .began:
-                if !vm.isUsingDownloadedEpisode {
-                    guard let downloadedEpisode = UserDefaults.standard.getEpisode(episode: episode) else {
-                        return
-                    }
-                    playEpisodeUsingFileUrl(downloadedEpisode: downloadedEpisode)
-                    vm.setIsUsingDownloadedEpisode(isUsingDownloadedEpisode: true)
-                }
-            case .moved:
-                let percentage = sender.value
-                guard let duration = avPlayer.currentItem?.duration else { return }
-                let durationInSeconds = CMTimeGetSeconds(duration)
-                let seekTimeInSeconds = Float64(percentage) * durationInSeconds
-                let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000)
-                avPlayer.seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
-            case .ended:
-                avPlayer.play()
-            default:
-                break
+                case .moved:
+                    podcastPlayer.seekEpisode(percentage: Float64(sender.value))
+                case .ended:
+                    podcastPlayer.play()
+                default:
+                    break
             }
         }
     }
@@ -75,7 +62,6 @@ extension MaxPlayerView {
     
     func makeDurationLabel() -> BoldLabel {
         let label = BoldLabel()
-        
         label.setLabel(text: "--:--:--", numberOfLines: 1, fontSize: 12)
         label.sizeToFit()
         return label
@@ -105,12 +91,12 @@ extension MaxPlayerView {
     }
     
     @objc func pressPlayerButton(sender: UIButton) {
-        if avPlayer.timeControlStatus == .paused {
-            avPlayer.play()
-            vm.setIsPlaying(isPlaying: true)
+        if podcastPlayer.timeControlStatus == .paused {
+            podcastPlayer.play()
+            vm.podcastPlayerStatus.setValue(value: .play)
         }else {
-            avPlayer.pause()
-            vm.setIsPlaying(isPlaying: false)
+            podcastPlayer.pause()
+            vm.podcastPlayerStatus.setValue(value: .pause)
         }
     }
     

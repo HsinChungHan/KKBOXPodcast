@@ -11,14 +11,16 @@ import UIKit
 
 
 enum PodcastPlayerStatus {
-    case playing
-    case stop
+    case play
+    case pause
 }
+
 
 protocol PodcastPlayerDataSource: AnyObject {
     
     func podcastPlayerEpisode(_ podcastPlayer: PodcastPlayer) -> Episode
 }
+
 
 protocol PodcastPlayerDelegate: AnyObject {
     
@@ -46,6 +48,7 @@ class PodcastPlayer: AVPlayer {
         self.dataSource = dataSource
         self.delegate = delegate
         super.init()
+        setupPlayer()
     }
     
     deinit {
@@ -55,11 +58,42 @@ class PodcastPlayer: AVPlayer {
 }
 
 
+// -MARK: internal moethods
+extension PodcastPlayer {
+    
+    func playEpisode() {
+        guard let downloadedEpisode = UserDefaults.standard.getEpisode(episode: episode) else {
+            guard let url = URL(string: episode.streamUrl) else { return }
+            let playerItem = AVPlayerItem(url: url)
+            replaceCurrentItem(with: playerItem)
+            play()
+            APIService.shared.downloadEpisode(episode: episode)
+            return
+        }
+        playEpisodeUsingFileUrl(downloadedEpisode: downloadedEpisode)
+        delegate?.podcastPlayerHandlePlaying(self, episode: episode)
+    }
+    
+    func seekEpisode(percentage: Float64) {
+        guard let duration = currentItem?.duration else { return }
+        let durationInSeconds = CMTimeGetSeconds(duration)
+        let seekTimeInSeconds = Float64(percentage) * durationInSeconds
+        let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000)
+        seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
+    }
+}
+
+
+// -MARK: private moethods
 extension PodcastPlayer {
     
     fileprivate func setupPlayer() {
         automaticallyWaitsToMinimizeStalling = false
         setupAudioSession()
+        setInterruptionObserver()
+        setDidFinishObserver()
+        setBoundaryTimeObserver()
+        setPeriodicTimeObserver()
     }
     
     fileprivate func setupAudioSession() {
@@ -72,7 +106,7 @@ extension PodcastPlayer {
         }
     }
     
-    func addInterruptionObserver() {
+    fileprivate func setInterruptionObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleInterruption(notification:)), name: AVAudioSession.interruptionNotification, object: nil)
     }
     
@@ -81,32 +115,31 @@ extension PodcastPlayer {
         guard let type = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt else { return }
         
         if type == AVAudioSession.InterruptionType.began.rawValue {
-            // 看 pause() 能不能交由外部去控制
             pause()
-            delegate?.podcastPlayerHandleInterruption(self, status: .stop)
+            delegate?.podcastPlayerHandleInterruption(self, status: .pause)
         } else {
             guard let options = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
             if options ==
                 AVAudioSession.InterruptionOptions.shouldResume.rawValue {
-                // 看 play() 能不能交由外部去控制
                 play()
-                delegate?.podcastPlayerHandleInterruption(self, status: .playing)
+                delegate?.podcastPlayerHandleInterruption(self, status: .play)
             }
         }
     }
     
-    func playEpisode() {
-        guard let url = URL(string: episode.streamUrl) else {
-            print("🚨 The episode's stream url is nil!")
-            return
-        }
-        let playerItem = AVPlayerItem(url: url)
+    // - MARK: play downloaded episode
+    fileprivate func playEpisodeUsingFileUrl(downloadedEpisode: Episode) {
+        guard let fileURL = URL(string: downloadedEpisode.fileUrl ?? "") else { return }
+//        vm.isUsingDownloadedEpisode = true
+        let fileName = fileURL.lastPathComponent
+        guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        trueLocation.appendPathComponent(fileName)
+        let playerItem = AVPlayerItem(url: trueLocation)
         replaceCurrentItem(with: playerItem)
         play()
-        delegate?.podcastPlayerHandlePlaying(self, episode: episode)
     }
     
-    func setDidFinishObserver() {
+    fileprivate func setDidFinishObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePlayerDidFinishPlaying(notification:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
@@ -114,11 +147,11 @@ extension PodcastPlayer {
         delegate?.podcastPlayerHandleObserveDidFinishPlaying(self, notification: notification)
     }
     
-    func setBoundaryTimeObserver() {
+    fileprivate func setBoundaryTimeObserver() {
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
         
-        // observe episode's time boundary
+        // observe episode's boundary time
         addBoundaryTimeObserver(forTimes: times, queue: .main) {
             [weak self] in
             guard let self = self else { return }
@@ -126,7 +159,7 @@ extension PodcastPlayer {
         }
     }
     
-    func setPeriodicTimeObserver() {
+    fileprivate func setPeriodicTimeObserver() {
         let timeInterval = CMTimeMake(value: 1, timescale: 2)
         addPeriodicTimeObserver(forInterval: timeInterval, queue: .main) { [weak self] (time) in
             guard let self = self else { return }

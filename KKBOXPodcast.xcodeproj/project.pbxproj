@@ -247,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				D1212B9325E5FBFE00A96A1C /* MaxPlayerView.swift */,
-				D14FF0E525ECCD0D003E7416 /* PodcastPlayer.swift */,
 				D1212C1825E6DD2F00A96A1C /* MaxPlayerViewWithAVPlayer.swift */,
 				D1212BA825E61E8100A96A1C /* MaxPlayerViewWithUI.swift */,
 				D1212BAD25E61F6A00A96A1C /* MaxPlayerViewWithAnimation.swift */,
@@ -295,6 +294,14 @@
 			path = PlayerView;
 			sourceTree = "<group>";
 		};
+		D14FF10B25ED7281003E7416 /* PodcastPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				D14FF0E525ECCD0D003E7416 /* PodcastPlayer.swift */,
+			);
+			path = PodcastPlayer;
+			sourceTree = "<group>";
+		};
 		D1CF5EF525E4AFFD0057D42F = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +335,7 @@
 				D1212B5625E5239C00A96A1C /* HomePage */,
 				D1212B6525E53AE600A96A1C /* EpisodePage */,
 				D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */,
+				D14FF10B25ED7281003E7416 /* PodcastPlayer */,
 				D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */,
 				D1CF5F0A25E4B0000057D42F /* Assets.xcassets */,
 				D1CF5F0C25E4B0000057D42F /* LaunchScreen.storyboard */,
