@@ -122,7 +122,7 @@ extension MaxPlayerView {
     }
     
     @objc func pressNextButton(sender: UIButton) {
-        delegate?.maxPlayerViewGoToNextEpisode(self)
+        maxPlayerViewDelegate?.maxPlayerViewGoToNextEpisode(self)
     }
     
     func makeLastButton() -> UIButton {
@@ -133,7 +133,7 @@ extension MaxPlayerView {
     }
     
     @objc func pressLastButton(sender: UIButton) {
-        delegate?.maxPlayerViewGoToLastEpisode(self)
+        maxPlayerViewDelegate?.maxPlayerViewGoToLastEpisode(self)
     }
     
     func makeButtonsStackView() -> UIStackView {

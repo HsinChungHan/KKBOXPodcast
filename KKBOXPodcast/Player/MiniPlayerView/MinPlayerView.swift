@@ -14,14 +14,14 @@ protocol MinPlayerViewDelegate: AnyObject {
 
 class MinPlayerView: PlayerView {
     
-    weak var delegate: MinPlayerViewDelegate?
+    weak var minPlayerViewDelegate: MinPlayerViewDelegate?
     
     fileprivate lazy var episodeImageView = makeEpisodeImageView()
     fileprivate lazy var titleLabel = makeTitleLabel()
     fileprivate lazy var playButton = makePlayButton()
     
     init(playerViewDataSource: PlayerViewDataSource, minPlayerViewDelegate: MinPlayerViewDelegate) {
-        self.delegate = minPlayerViewDelegate
+        self.minPlayerViewDelegate = minPlayerViewDelegate
         super.init(playerViewDataSource: playerViewDataSource)
         setupLayout()
     }
@@ -55,7 +55,7 @@ extension MinPlayerView {
     }
     
     @objc func pressPlayerButton(sender: UIButton) {
-        guard let delegate = delegate else {
+        guard let delegate = minPlayerViewDelegate else {
             print("🚨 You have to set delegate for MinPlayerViewDelegate!")
             return
         }

@@ -24,7 +24,7 @@ protocol MaxPlayerViewDelegate: AnyObject {
 class MaxPlayerView: PlayerView {
     
     weak var maxPlayerViewDataSource: MaxPlayerViewDataSource?
-    weak var delegate: MaxPlayerViewDelegate?
+    weak var maxPlayerViewDelegate: MaxPlayerViewDelegate?
     
     var superView: UIView {
         guard let dataSource = maxPlayerViewDataSource else {
@@ -59,7 +59,7 @@ class MaxPlayerView: PlayerView {
     
     init(playerViewDataSource: PlayerViewDataSource, maxPlayerViewDataSource: MaxPlayerViewDataSource, maxPlayerViewDelegate: MaxPlayerViewDelegate) {
         self.maxPlayerViewDataSource = maxPlayerViewDataSource
-        self.delegate = maxPlayerViewDelegate
+        self.maxPlayerViewDelegate = maxPlayerViewDelegate
         super.init(playerViewDataSource: playerViewDataSource)
         
         addBoundaryTimeObserver()
