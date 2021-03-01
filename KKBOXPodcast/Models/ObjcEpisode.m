@@ -12,7 +12,7 @@
 @implementation ObjcEpisode
 
 
--(id)initWithTitle:(NSString*)title
+-(instancetype)initWithTitle:(NSString*)title
            pubDate:(NSDate*)pubDate
           subtitle:(NSString*)subtitle
             author:(NSString*)author

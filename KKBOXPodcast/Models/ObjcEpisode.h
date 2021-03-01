@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString* imageUrl;
 @property (nonatomic, strong) NSString* fileUrl;
 
-- (id)initWithTitle:(NSString*)title
+- (instancetype)initWithTitle:(NSString*)title
              pubDate:(NSDate*)pubDate
             subtitle:(NSString*)subtitle
               author:(NSString*)author
