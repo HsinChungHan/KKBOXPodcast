@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         registerTableViewCell()
         setupLayout()
-        vm.fetchEpisodes()
+        vm.fetchEpisodes { (_) in }
         bindEpisodes()
         bindSelectedIndex()
     }
@@ -108,7 +108,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        vm.setSelectedEpisodeIndex(selectedIndex: indexPath.item)
+        vm.setSelectedEpisodeIndexValue(selectedIndex: indexPath.item)
         vm.action = .GoToEpisode
     }
     
@@ -157,11 +157,11 @@ extension HomeViewController: EpisodeViewControllerDelegate {
     
     func episodeViewControllerGoToLastEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
         vm.action = .PlayEpisode
-        vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
+        vm.setSelectedEpisodeIndexValue(selectedIndex: selectedEpisodeIndex)
     }
     
     func episodeViewControllerGoToNextEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
         vm.action = .PlayEpisode
-        vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
+        vm.setSelectedEpisodeIndexValue(selectedIndex: selectedEpisodeIndex)
     }
 }

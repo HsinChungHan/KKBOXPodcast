@@ -36,11 +36,12 @@
 		D14FF0E625ECCD0D003E7416 /* PodcastPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14FF0E525ECCD0D003E7416 /* PodcastPlayer.swift */; };
 		D14FF11325EDF66C003E7416 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14FF11225EDF66C003E7416 /* Formatter.swift */; };
 		D14FF11E25EE03C9003E7416 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14FF11D25EE03C9003E7416 /* DownloadManager.swift */; };
+		D14FF12C25EE2D23003E7416 /* HomeVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */; };
+		D1A6EEAC25EE35220097A6AC /* KKBOXPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */; };
 		D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */; };
 		D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */; };
 		D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0A25E4B0000057D42F /* Assets.xcassets */; };
 		D1CF5F0E25E4B0000057D42F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0C25E4B0000057D42F /* LaunchScreen.storyboard */; };
-		D1CF5F1925E4B0010057D42F /* KKBOXPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F1825E4B0010057D42F /* KKBOXPodcastTests.swift */; };
 		D1CF5F2425E4B0010057D42F /* KKBOXPodcastUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F2325E4B0010057D42F /* KKBOXPodcastUITests.swift */; };
 		F8266306C767905DF2153C96 /* Pods_KKBOXPodcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4370EBE5D9028EAE939280DF /* Pods_KKBOXPodcast.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,8 @@
 		D14FF0E525ECCD0D003E7416 /* PodcastPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastPlayer.swift; sourceTree = "<group>"; };
 		D14FF11225EDF66C003E7416 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		D14FF11D25EE03C9003E7416 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
+		D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCViewModelTests.swift; sourceTree = "<group>"; };
+		D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKBOXPodcastTests.swift; sourceTree = "<group>"; };
 		D1CF5EFE25E4AFFD0057D42F /* KKBOXPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBOXPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,7 +108,6 @@
 		D1CF5F0D25E4B0000057D42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1CF5F0F25E4B0000057D42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1CF5F1425E4B0010057D42F /* KKBOXPodcastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KKBOXPodcastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1CF5F1825E4B0010057D42F /* KKBOXPodcastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBOXPodcastTests.swift; sourceTree = "<group>"; };
 		D1CF5F1A25E4B0010057D42F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1CF5F1F25E4B0010057D42F /* KKBOXPodcastUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KKBOXPodcastUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F2325E4B0010057D42F /* KKBOXPodcastUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKBOXPodcastUITests.swift; sourceTree = "<group>"; };
@@ -347,7 +349,8 @@
 		D1CF5F1725E4B0010057D42F /* KKBOXPodcastTests */ = {
 			isa = PBXGroup;
 			children = (
-				D1CF5F1825E4B0010057D42F /* KKBOXPodcastTests.swift */,
+				D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */,
+				D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */,
 				D1CF5F1A25E4B0010057D42F /* Info.plist */,
 			);
 			path = KKBOXPodcastTests;
@@ -418,6 +421,7 @@
 				D1CF5F1025E4B0010057D42F /* Sources */,
 				D1CF5F1125E4B0010057D42F /* Frameworks */,
 				D1CF5F1225E4B0010057D42F /* Resources */,
+				479A137EE17E6C8A5246A922 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -437,6 +441,7 @@
 				D1CF5F1B25E4B0010057D42F /* Sources */,
 				D1CF5F1C25E4B0010057D42F /* Frameworks */,
 				D1CF5F1D25E4B0010057D42F /* Resources */,
+				6565CC16BE5730C04A651721 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -561,6 +566,40 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcast/Pods-KKBOXPodcast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		479A137EE17E6C8A5246A922 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcastTests/Pods-KKBOXPodcastTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcastTests/Pods-KKBOXPodcastTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcastTests/Pods-KKBOXPodcastTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6565CC16BE5730C04A651721 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcastUITests/Pods-KKBOXPodcastUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcastUITests/Pods-KKBOXPodcastUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KKBOXPodcastUITests/Pods-KKBOXPodcastUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9DF08F62A58A43FB9E803E98 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -662,7 +701,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1CF5F1925E4B0010057D42F /* KKBOXPodcastTests.swift in Sources */,
+				D1A6EEAC25EE35220097A6AC /* KKBOXPodcastTests.swift in Sources */,
+				D14FF12C25EE2D23003E7416 /* HomeVCViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

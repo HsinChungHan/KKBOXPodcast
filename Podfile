@@ -14,11 +14,21 @@ target 'KKBOXPodcast' do
 
   target 'KKBOXPodcastTests' do
     inherit! :search_paths
+    pod 'Alamofire'
+    pod 'FeedKit'
+    pod 'R.swift'
+    pod 'SDWebImage'
+    pod 'SnapKit'
     # Pods for testing
   end
 
   target 'KKBOXPodcastUITests' do
     inherit! :search_paths
+    pod 'Alamofire'
+    pod 'FeedKit'
+    pod 'R.swift'
+    pod 'SDWebImage'
+    pod 'SnapKit'
     # Pods for testing
   end
 
