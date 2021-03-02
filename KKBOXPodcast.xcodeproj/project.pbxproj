@@ -40,6 +40,7 @@
 		D1A6EEAC25EE35220097A6AC /* KKBOXPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */; };
 		D1A6EEB925EE6E200097A6AC /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEB825EE6E200097A6AC /* APIServiceTests.swift */; };
 		D1A6EEBE25EE6F630097A6AC /* APITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEBD25EE6F630097A6AC /* APITest.swift */; };
+		D1A6EEC325EEAE380097A6AC /* DownloadManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEC225EEAE380097A6AC /* DownloadManagerTest.swift */; };
 		D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */; };
 		D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */; };
 		D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0A25E4B0000057D42F /* Assets.xcassets */; };
@@ -105,6 +106,7 @@
 		D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKBOXPodcastTests.swift; sourceTree = "<group>"; };
 		D1A6EEB825EE6E200097A6AC /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
 		D1A6EEBD25EE6F630097A6AC /* APITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITest.swift; sourceTree = "<group>"; };
+		D1A6EEC225EEAE380097A6AC /* DownloadManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManagerTest.swift; sourceTree = "<group>"; };
 		D1CF5EFE25E4AFFD0057D42F /* KKBOXPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBOXPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -308,6 +310,31 @@
 			path = PodcastPlayer;
 			sourceTree = "<group>";
 		};
+		D1A6EEE825F1CC660097A6AC /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		D1A6EEEC25F1CC6F0097A6AC /* DownloadManager */ = {
+			isa = PBXGroup;
+			children = (
+				D1A6EEC225EEAE380097A6AC /* DownloadManagerTest.swift */,
+			);
+			path = DownloadManager;
+			sourceTree = "<group>";
+		};
+		D1A6EEF625F1CC7B0097A6AC /* APITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1A6EEB825EE6E200097A6AC /* APIServiceTests.swift */,
+				D1A6EEBD25EE6F630097A6AC /* APITest.swift */,
+			);
+			path = APITests;
+			sourceTree = "<group>";
+		};
 		D1CF5EF525E4AFFD0057D42F = {
 			isa = PBXGroup;
 			children = (
@@ -354,9 +381,9 @@
 			isa = PBXGroup;
 			children = (
 				D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */,
-				D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */,
-				D1A6EEB825EE6E200097A6AC /* APIServiceTests.swift */,
-				D1A6EEBD25EE6F630097A6AC /* APITest.swift */,
+				D1A6EEE825F1CC660097A6AC /* HomePage */,
+				D1A6EEEC25F1CC6F0097A6AC /* DownloadManager */,
+				D1A6EEF625F1CC7B0097A6AC /* APITests */,
 				D1CF5F1A25E4B0010057D42F /* Info.plist */,
 			);
 			path = KKBOXPodcastTests;
@@ -707,6 +734,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A6EEC325EEAE380097A6AC /* DownloadManagerTest.swift in Sources */,
 				D1A6EEB925EE6E200097A6AC /* APIServiceTests.swift in Sources */,
 				D1A6EEAC25EE35220097A6AC /* KKBOXPodcastTests.swift in Sources */,
 				D1A6EEBE25EE6F630097A6AC /* APITest.swift in Sources */,

@@ -19,8 +19,8 @@ class APITest: XCTestCase {
     }
     
     override func tearDown() {
-        super.tearDown()
         urlSession = nil
+        super.tearDown()
     }
     
     func request(url: String, timeout: TimeInterval) {
