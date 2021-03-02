@@ -14,7 +14,7 @@ protocol MinPlayerViewDelegate: AnyObject {
 
 class MinPlayerView: PlayerView {
     
-    weak var minPlayerViewDelegate: MinPlayerViewDelegate?
+    fileprivate weak var minPlayerViewDelegate: MinPlayerViewDelegate?
     
     fileprivate lazy var episodeImageView = makeEpisodeImageView()
     fileprivate lazy var titleLabel = makeTitleLabel()

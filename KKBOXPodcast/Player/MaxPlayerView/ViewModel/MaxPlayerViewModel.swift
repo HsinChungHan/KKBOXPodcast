@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import AVKit
 
 
 class MaxPlayerViewModel {
     
-    let podcastPlayerStatus = Bindable<PodcastPlayerStatus>.init(value: .pause)
+    let podcastPlayerStatus = Bindable<AVPlayer.TimeControlStatus>.init(value: .paused)
     let currentTimeStr = Bindable<String>.init(value: nil)
     let durationTimeStr = Bindable<String>.init(value: nil)
 }

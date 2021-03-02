@@ -25,10 +25,11 @@ protocol PodcastPlayerDataSource: AnyObject {
 protocol PodcastPlayerDelegate: AnyObject {
     
     func podcastPlayerHandlePlaying(_ podcastPlayer: PodcastPlayer, episode: Episode)
-    func podcastPlayerHandleInterruption(_ podcastPlayer: PodcastPlayer, status: PodcastPlayerStatus)
+    func podcastPlayerHandleInterruption(_ podcastPlayer: PodcastPlayer, timeControlStatus: AVPlayer.TimeControlStatus)
     func podcastPlayerHandleObserveDidFinishPlaying(_ podcastPlayer: PodcastPlayer, notification: Notification)
     func podcastPlayerHandleObserveEpisodeBoundaryTime(_ podcastPlayer: PodcastPlayer, times: [NSValue])
     func podcastPlayerHandleObservePeriodicTime(_ podcastPlayer: PodcastPlayer, timeInterval: CMTime)
+    func podcastPlayerTimeControlStatusDidCange(_ podcastPlayer: PodcastPlayer, timeControlStatus: AVPlayer.TimeControlStatus)
 }
 
 
@@ -81,6 +82,28 @@ extension PodcastPlayer {
         let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000)
         seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
     }
+    
+    func timeControlStatusDidChange() {
+        switch timeControlStatus {
+        case .paused:
+            play()
+            delegate?.podcastPlayerTimeControlStatusDidCange(self, timeControlStatus: .playing)
+        default:
+            pause()
+            delegate?.podcastPlayerTimeControlStatusDidCange(self, timeControlStatus: .paused)
+        }
+    }
+    
+    func timeSliderValueDidCahnge(percentage: Float64, eventPhase: UITouch.Phase) {
+        switch eventPhase {
+            case .moved:
+                seekEpisode(percentage: percentage)
+            case .ended:
+                play()
+            default:
+                break
+        }
+    }
 }
 
 
@@ -116,13 +139,13 @@ extension PodcastPlayer {
         
         if type == AVAudioSession.InterruptionType.began.rawValue {
             pause()
-            delegate?.podcastPlayerHandleInterruption(self, status: .pause)
+            delegate?.podcastPlayerHandleInterruption(self, timeControlStatus: .paused)
         } else {
             guard let options = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
             if options ==
                 AVAudioSession.InterruptionOptions.shouldResume.rawValue {
                 play()
-                delegate?.podcastPlayerHandleInterruption(self, status: .play)
+                delegate?.podcastPlayerHandleInterruption(self, timeControlStatus: .playing)
             }
         }
     }

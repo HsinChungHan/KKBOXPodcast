@@ -42,14 +42,7 @@ extension MaxPlayerView {
     
     @objc func handleTimeSlider(sender: UISlider, event: UIEvent) {
         if let touchEvent = event.allTouches?.first {
-            switch touchEvent.phase {
-                case .moved:
-                    podcastPlayer.seekEpisode(percentage: Float64(sender.value))
-                case .ended:
-                    podcastPlayer.play()
-                default:
-                    break
-            }
+            podcastPlayer.timeSliderValueDidCahnge(percentage: Float64(sender.value), eventPhase: touchEvent.phase)
         }
     }
     
@@ -91,13 +84,7 @@ extension MaxPlayerView {
     }
     
     @objc func pressPlayerButton(sender: UIButton) {
-        if podcastPlayer.timeControlStatus == .paused {
-            podcastPlayer.play()
-            vm.podcastPlayerStatus.setValue(value: .play)
-        }else {
-            podcastPlayer.pause()
-            vm.podcastPlayerStatus.setValue(value: .pause)
-        }
+        podcastPlayer.timeControlStatusDidChange()
     }
     
     func makeNextButton() -> UIButton {

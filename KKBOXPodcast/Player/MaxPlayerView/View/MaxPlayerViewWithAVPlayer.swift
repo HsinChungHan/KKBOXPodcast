@@ -35,22 +35,25 @@ extension MaxPlayerView: PodcastPlayerDataSource {
 
 extension MaxPlayerView: PodcastPlayerDelegate {
     
-    func podcastPlayerHandlePlaying(_ podcastPlayer: PodcastPlayer, episode: Episode) {
-        
+    func podcastPlayerHandleInterruption(_ podcastPlayer: PodcastPlayer, timeControlStatus: AVPlayer.TimeControlStatus) {
+        vm.podcastPlayerStatus.setValue(value: timeControlStatus)
     }
     
-    func podcastPlayerHandleInterruption(_ podcastPlayer: PodcastPlayer, status: PodcastPlayerStatus) {
-        vm.podcastPlayerStatus.setValue(value: status)
+    func podcastPlayerTimeControlStatusDidCange(_ podcastPlayer: PodcastPlayer, timeControlStatus: AVPlayer.TimeControlStatus) {
+        vm.podcastPlayerStatus.setValue(value: timeControlStatus)
     }
+    
+    
+    func podcastPlayerHandlePlaying(_ podcastPlayer: PodcastPlayer, episode: Episode) {}
     
     func podcastPlayerHandleObserveDidFinishPlaying(_ podcastPlayer: PodcastPlayer, notification: Notification) {
-        vm.podcastPlayerStatus.setValue(value: .pause)
+        vm.podcastPlayerStatus.setValue(value: .paused)
         UserDefaults.standard.deleteEpisode(episode: episode)
         pressNextButton(sender: nextButton)
     }
     
     func podcastPlayerHandleObserveEpisodeBoundaryTime(_ podcastPlayer: PodcastPlayer, times: [NSValue]) {
-        vm.podcastPlayerStatus.setValue(value: .play)
+        vm.podcastPlayerStatus.setValue(value: .playing)
         identityEpisodeImageView()
     }
     

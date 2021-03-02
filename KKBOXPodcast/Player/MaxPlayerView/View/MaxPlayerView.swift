@@ -87,11 +87,11 @@ extension MaxPlayerView {
             var buttonImage: UIImage
             
             switch status {
-                case .play:
+                case .playing:
                     guard let _ = R.image.pause() else { return }
                     buttonImage = R.image.pause()!
                     self?.identityEpisodeImageView()
-                case .pause:
+                default:
                     guard let _ = R.image.play() else { return }
                     buttonImage = R.image.play()!
                     self?.shrinkEpisodeImageView()
