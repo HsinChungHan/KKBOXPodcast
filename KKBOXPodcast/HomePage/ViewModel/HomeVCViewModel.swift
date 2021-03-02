@@ -24,8 +24,7 @@ class HomeVCViewModel {
     func fetchEpisodes() {
         APIService.shared.fetchEpisodes { (episodes) in
             DispatchQueue.main.async {
-                self.episodes.setValue(value: episodes)
-                print(episodes.count)
+                self.episodes.value = episodes
             }
         } errorHandler: { (error) in
             print("🚨 Failed to get episodes!")
@@ -38,7 +37,7 @@ class HomeVCViewModel {
             return
         }
         if selectedIndex >= 0 && selectedIndex < episodes.count {
-            self.selectedEpisodeIndex.setValue(value: selectedIndex)
+            self.selectedEpisodeIndex.value = selectedIndex
         }else {
             print("This is the final episode!")
         }

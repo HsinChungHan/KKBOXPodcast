@@ -36,30 +36,30 @@ extension MaxPlayerView: PodcastPlayerDataSource {
 extension MaxPlayerView: PodcastPlayerDelegate {
     
     func podcastPlayerHandleInterruption(_ podcastPlayer: PodcastPlayer, timeControlStatus: AVPlayer.TimeControlStatus) {
-        vm.podcastPlayerStatus.setValue(value: timeControlStatus)
+        vm.podcastPlayerStatus.value = timeControlStatus
     }
     
     func podcastPlayerTimeControlStatusDidCange(_ podcastPlayer: PodcastPlayer, timeControlStatus: AVPlayer.TimeControlStatus) {
-        vm.podcastPlayerStatus.setValue(value: timeControlStatus)
+        vm.podcastPlayerStatus.value = timeControlStatus
     }
     
     
     func podcastPlayerHandlePlaying(_ podcastPlayer: PodcastPlayer, episode: Episode) {}
     
     func podcastPlayerHandleObserveDidFinishPlaying(_ podcastPlayer: PodcastPlayer, notification: Notification) {
-        vm.podcastPlayerStatus.setValue(value: .paused)
+        vm.podcastPlayerStatus.value = .paused
         UserDefaults.standard.deleteEpisode(episode: episode)
         pressNextButton(sender: nextButton)
     }
     
     func podcastPlayerHandleObserveEpisodeBoundaryTime(_ podcastPlayer: PodcastPlayer, times: [NSValue]) {
-        vm.podcastPlayerStatus.setValue(value: .playing)
+        vm.podcastPlayerStatus.value = .playing
         identityEpisodeImageView()
     }
     
     func podcastPlayerHandleObservePeriodicTime(_ podcastPlayer: PodcastPlayer, timeInterval: CMTime) {
-        vm.currentTimeStr.setValue(value: timeInterval.toString())
+        vm.currentTimeStr.value = timeInterval.toString()
         guard let durationTime = podcastPlayer.currentItem?.duration else { return }
-        vm.durationTimeStr.setValue(value: durationTime.toString())
+        vm.durationTimeStr.value = durationTime.toString()
     }
 }

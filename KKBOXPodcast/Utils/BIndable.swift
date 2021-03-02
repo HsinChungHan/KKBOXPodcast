@@ -9,7 +9,7 @@ import Foundation
 
 class Bindable<T> {
     
-    private(set) var value: T? {
+    var value: T? {
         didSet {
             observer?(value)
         }
@@ -23,9 +23,5 @@ class Bindable<T> {
     
     func bind(observer: @escaping(_ value: T?) -> Void) {
         self.observer = observer
-    }
-    
-    func setValue(value: T?) {
-        self.value = value
     }
 }
