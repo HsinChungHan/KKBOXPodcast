@@ -126,7 +126,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             print("🚨 You have to set episodes!")
             return
         }
-        APIService.shared.downloadEpisode(episode: episodes[selectedIndex])
+        let episode = episodes[selectedIndex]
+        APIService.shared.downloadEpisode(url: episode.streamUrl, episodeTitle: episode.title) { (filePath, _) in
+            DownloadManager.updateDownloadedEpisodFilePath(episode: episode, filePath: filePath)
+        } errorHandler: { (error) in
+            print("🚨 Failed to download episode!")
+            return
+        }
     }
 }
 

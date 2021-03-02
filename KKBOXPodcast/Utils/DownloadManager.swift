@@ -35,23 +35,23 @@ class DownloadManager {
         return episodes
     }
     
-   static func getSpecificEpisode(episode: Episode) -> Episode? {
+    static func getSpecificEpisode(title: String, author: String) -> Episode? {
         let downloadedEpisodes = getEpisodes()
-        guard let episodeIndex = downloadedEpisodes.firstIndex(where: { $0.title == episode.title && $0.author == episode.author}) else {
+        guard let episodeIndex = downloadedEpisodes.firstIndex(where: { $0.title == title && $0.author == author}) else {
             return nil
         }
         return downloadedEpisodes[episodeIndex]
     }
     
-   static func deleteEpisode(episode: Episode) {
+    static func deleteEpisode(title: String) {
         let downloadedEpisodes = getEpisodes()
         let filteredEpisodes = downloadedEpisodes.filter { (downloadedEpisode) -> Bool in
-            return episode.title != downloadedEpisode.title
+            return title != downloadedEpisode.title
         }
         do {
             let data = try JSONEncoder().encode(filteredEpisodes)
             UserDefaults.standard.set(data, forKey: DownloadManager.downloadedEpisodesKey)
-            print("Successfully delete episode: \(episode.title)")
+            print("Successfully delete episode: \(title)")
         } catch let encodeErr {
             print("Failed to encode episode:", encodeErr)
         }

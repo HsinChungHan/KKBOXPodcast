@@ -63,12 +63,17 @@ class PodcastPlayer: AVPlayer {
 extension PodcastPlayer {
     
     func playEpisode() {
-        guard let downloadedEpisode = DownloadManager.getSpecificEpisode(episode: episode) else {
+        guard let downloadedEpisode = DownloadManager.getSpecificEpisode(title: episode.title, author: episode.author) else {
             guard let url = URL(string: episode.streamUrl) else { return }
             let playerItem = AVPlayerItem(url: url)
             replaceCurrentItem(with: playerItem)
             play()
-            APIService.shared.downloadEpisode(episode: episode)
+            APIService.shared.downloadEpisode(url: episode.streamUrl, episodeTitle: episode.title) { (filePath, _) in
+                DownloadManager.updateDownloadedEpisodFilePath(episode: self.episode, filePath: filePath)
+            } errorHandler: { (error) in
+                print("🚨 Failed to download episode!")
+                return
+            }
             return
         }
         playEpisodeUsingFileUrl(downloadedEpisode: downloadedEpisode)

@@ -48,7 +48,7 @@ extension MaxPlayerView: PodcastPlayerDelegate {
     
     func podcastPlayerHandleObserveDidFinishPlaying(_ podcastPlayer: PodcastPlayer, notification: Notification) {
         vm.podcastPlayerStatus.value = .paused
-        DownloadManager.deleteEpisode(episode: episode)
+        DownloadManager.deleteEpisode(title: episode.title)
         pressNextButton(sender: nextButton)
     }
     
