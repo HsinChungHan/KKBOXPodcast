@@ -12,7 +12,6 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     fileprivate lazy var tableView = makeTableView()
-    fileprivate let episodeCellId = "EpisodeCellID"
     fileprivate let vm = HomeVCViewModel()
     
     override func viewDidLoad() {
@@ -37,7 +36,7 @@ extension HomeViewController {
     }
     
     fileprivate func registerTableViewCell() {
-        tableView.register(EpisodeCell.self, forCellReuseIdentifier: episodeCellId)
+        tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.cellId)
     }
     
     fileprivate func setupLayout() {
@@ -73,9 +72,7 @@ extension HomeViewController {
     
     // - FIXME: move to coordinator
     fileprivate func goToEpisode(selectedIndex: Int) {
-        let episodeVC = EpisodeViewController()
-        episodeVC.dataSource = self
-        episodeVC.delegate = self
+        let episodeVC = EpisodeViewController(dataSource: self, delegate: self)
         present(episodeVC, animated: true) {
             if self.vm.action == .PlayEpisode {
                 episodeVC.popMaxPlayerView()
@@ -96,11 +93,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: episodeCellId, for: indexPath) as! EpisodeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.cellId, for: indexPath) as! EpisodeCell
         guard let episodes = vm.episodes.value else {
             return cell
         }
-        cell.setupLayout()
         cell.setEpisode(episode: episodes[indexPath.item])
         return cell
     }
@@ -113,7 +109,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vm.setSelectedEpisodeIndex(selectedIndex: indexPath.item)
-        vm.setAction(action: .GoToEpisode)
+        vm.action = .GoToEpisode
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -146,7 +142,10 @@ extension HomeViewController: EpisodeViewControllerDataSource {
     }
     
     func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode {
-        guard let episodes = vm.episodes.value, let selectedIndex = vm.selectedEpisodeIndex.value else {
+        guard
+            let episodes = vm.episodes.value,
+            let selectedIndex = vm.selectedEpisodeIndex.value
+        else {
             fatalError("🚨 You have to set episodes and selectedIndex!")
         }
         return episodes[selectedIndex]
@@ -157,12 +156,12 @@ extension HomeViewController: EpisodeViewControllerDataSource {
 extension HomeViewController: EpisodeViewControllerDelegate {
     
     func episodeViewControllerGoToLastEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
-        vm.setAction(action: .PlayEpisode)
+        vm.action = .PlayEpisode
         vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
     }
     
     func episodeViewControllerGoToNextEpisode(_ episodeViewController: EpisodeViewController, selectedEpisodeIndex: Int) {
-        vm.setAction(action: .PlayEpisode)
+        vm.action = .PlayEpisode
         vm.setSelectedEpisodeIndex(selectedIndex: selectedEpisodeIndex)
     }
 }

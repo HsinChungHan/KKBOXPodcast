@@ -22,11 +22,7 @@ extension MaxPlayerView {
     }
     
     func makeMinPlayerView() -> MinPlayerView {
-        let minPlayerView = MinPlayerView()
-        minPlayerView.alpha = 0.0
-        minPlayerView.dataSource = self
-        minPlayerView.delegate = self
-        minPlayerView.setupLayout()
+        let minPlayerView = MinPlayerView(playerViewDataSource: self, minPlayerViewDelegate: self)
         return minPlayerView
     }
     
@@ -46,27 +42,7 @@ extension MaxPlayerView {
     
     @objc func handleTimeSlider(sender: UISlider, event: UIEvent) {
         if let touchEvent = event.allTouches?.first {
-            switch touchEvent.phase {
-            case .began:
-                if !vm.isUsingDownloadedEpisode {
-                    guard let downloadedEpisode = UserDefaults.standard.getEpisode(episode: episode) else {
-                        return
-                    }
-                    playEpisodeUsingFileUrl(downloadedEpisode: downloadedEpisode)
-                    vm.setIsUsingDownloadedEpisode(isUsingDownloadedEpisode: true)
-                }
-            case .moved:
-                let percentage = sender.value
-                guard let duration = avPlayer.currentItem?.duration else { return }
-                let durationInSeconds = CMTimeGetSeconds(duration)
-                let seekTimeInSeconds = Float64(percentage) * durationInSeconds
-                let seekTime = CMTimeMakeWithSeconds(seekTimeInSeconds, preferredTimescale: 1000)
-                avPlayer.seek(to: seekTime, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero)
-            case .ended:
-                avPlayer.play()
-            default:
-                break
-            }
+            podcastPlayer.timeSliderValueDidCahnge(percentage: Float64(sender.value), eventPhase: touchEvent.phase)
         }
     }
     
@@ -79,7 +55,6 @@ extension MaxPlayerView {
     
     func makeDurationLabel() -> BoldLabel {
         let label = BoldLabel()
-        
         label.setLabel(text: "--:--:--", numberOfLines: 1, fontSize: 12)
         label.sizeToFit()
         return label
@@ -109,13 +84,7 @@ extension MaxPlayerView {
     }
     
     @objc func pressPlayerButton(sender: UIButton) {
-        if avPlayer.timeControlStatus == .paused {
-            avPlayer.play()
-            vm.setIsPlaying(isPlaying: true)
-        }else {
-            avPlayer.pause()
-            vm.setIsPlaying(isPlaying: false)
-        }
+        podcastPlayer.timeControlStatusDidChange()
     }
     
     func makeNextButton() -> UIButton {
@@ -126,7 +95,7 @@ extension MaxPlayerView {
     }
     
     @objc func pressNextButton(sender: UIButton) {
-        delegate?.maxPlayerViewGoToNextEpisode(self)
+        maxPlayerViewDelegate?.maxPlayerViewGoToNextEpisode(self)
     }
     
     func makeLastButton() -> UIButton {
@@ -137,7 +106,7 @@ extension MaxPlayerView {
     }
     
     @objc func pressLastButton(sender: UIButton) {
-        delegate?.maxPlayerViewGoToLastEpisode(self)
+        maxPlayerViewDelegate?.maxPlayerViewGoToLastEpisode(self)
     }
     
     func makeButtonsStackView() -> UIStackView {
@@ -201,6 +170,8 @@ extension MaxPlayerView {
     }
     
     func setupLayout() {
+        backgroundColor = .white
+        
         let padding: CGFloat = 10.0
         addSubview(overallStackView)
         overallStackView.fillSuperView(padding: .init(top: padding, left: padding, bottom: padding, right: padding), ratio: 1.0)

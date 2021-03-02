@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+// - FIXME: 這邊違反了 OOD 中的 Lisko substitution principle
 protocol BasicLabel {
     var txtColor: UIColor { get }
 }
