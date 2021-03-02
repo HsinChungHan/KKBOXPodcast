@@ -12,7 +12,6 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     fileprivate lazy var tableView = makeTableView()
-    fileprivate let episodeCellId = "EpisodeCellID"
     fileprivate let vm = HomeVCViewModel()
     
     override func viewDidLoad() {
@@ -37,7 +36,7 @@ extension HomeViewController {
     }
     
     fileprivate func registerTableViewCell() {
-        tableView.register(EpisodeCell.self, forCellReuseIdentifier: episodeCellId)
+        tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.cellId)
     }
     
     fileprivate func setupLayout() {
@@ -94,11 +93,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: episodeCellId, for: indexPath) as! EpisodeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.cellId, for: indexPath) as! EpisodeCell
         guard let episodes = vm.episodes.value else {
             return cell
         }
-        cell.setupLayout()
         cell.setEpisode(episode: episodes[indexPath.item])
         return cell
     }
@@ -144,7 +142,10 @@ extension HomeViewController: EpisodeViewControllerDataSource {
     }
     
     func episodeViewControllerEpisode(_ episodeViewController: EpisodeViewController) -> Episode {
-        guard let episodes = vm.episodes.value, let selectedIndex = vm.selectedEpisodeIndex.value else {
+        guard
+            let episodes = vm.episodes.value,
+            let selectedIndex = vm.selectedEpisodeIndex.value
+        else {
             fatalError("🚨 You have to set episodes and selectedIndex!")
         }
         return episodes[selectedIndex]
