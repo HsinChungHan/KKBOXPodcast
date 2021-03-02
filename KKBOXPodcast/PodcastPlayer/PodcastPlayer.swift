@@ -63,7 +63,7 @@ class PodcastPlayer: AVPlayer {
 extension PodcastPlayer {
     
     func playEpisode() {
-        guard let downloadedEpisode = UserDefaults.standard.getEpisode(episode: episode) else {
+        guard let downloadedEpisode = DownloadManager.getSpecificEpisode(episode: episode) else {
             guard let url = URL(string: episode.streamUrl) else { return }
             let playerItem = AVPlayerItem(url: url)
             replaceCurrentItem(with: playerItem)
