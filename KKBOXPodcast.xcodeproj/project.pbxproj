@@ -38,6 +38,8 @@
 		D14FF11E25EE03C9003E7416 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14FF11D25EE03C9003E7416 /* DownloadManager.swift */; };
 		D14FF12C25EE2D23003E7416 /* HomeVCViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */; };
 		D1A6EEAC25EE35220097A6AC /* KKBOXPodcastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */; };
+		D1A6EEB925EE6E200097A6AC /* APIServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEB825EE6E200097A6AC /* APIServiceTests.swift */; };
+		D1A6EEBE25EE6F630097A6AC /* APITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A6EEBD25EE6F630097A6AC /* APITest.swift */; };
 		D1CF5F0225E4AFFD0057D42F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */; };
 		D1CF5F0425E4AFFD0057D42F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */; };
 		D1CF5F0B25E4B0000057D42F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1CF5F0A25E4B0000057D42F /* Assets.xcassets */; };
@@ -101,6 +103,8 @@
 		D14FF11D25EE03C9003E7416 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCViewModelTests.swift; sourceTree = "<group>"; };
 		D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KKBOXPodcastTests.swift; sourceTree = "<group>"; };
+		D1A6EEB825EE6E200097A6AC /* APIServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceTests.swift; sourceTree = "<group>"; };
+		D1A6EEBD25EE6F630097A6AC /* APITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITest.swift; sourceTree = "<group>"; };
 		D1CF5EFE25E4AFFD0057D42F /* KKBOXPodcast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKBOXPodcast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CF5F0125E4AFFD0057D42F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1CF5F0325E4AFFD0057D42F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 			children = (
 				D1A6EEAB25EE35220097A6AC /* KKBOXPodcastTests.swift */,
 				D14FF12B25EE2D23003E7416 /* HomeVCViewModelTests.swift */,
+				D1A6EEB825EE6E200097A6AC /* APIServiceTests.swift */,
+				D1A6EEBD25EE6F630097A6AC /* APITest.swift */,
 				D1CF5F1A25E4B0010057D42F /* Info.plist */,
 			);
 			path = KKBOXPodcastTests;
@@ -701,7 +707,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A6EEB925EE6E200097A6AC /* APIServiceTests.swift in Sources */,
 				D1A6EEAC25EE35220097A6AC /* KKBOXPodcastTests.swift in Sources */,
+				D1A6EEBE25EE6F630097A6AC /* APITest.swift in Sources */,
 				D14FF12C25EE2D23003E7416 /* HomeVCViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
