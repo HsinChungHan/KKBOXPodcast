@@ -93,7 +93,7 @@ extension EpisodeCell {
     }
     
     fileprivate func setPublishedDateLabel(episode: Episode) {
-        publishedDateLabel.text = episode.pubDate.dateFormate()
+        publishedDateLabel.text = episode.pubDateFormattedStr
     }
     
     fileprivate func setEpisodeImageView(episode: Episode) {

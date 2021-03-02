@@ -23,12 +23,21 @@ class HomeVCViewModel {
     
     func fetchEpisodes() {
         APIService.shared.fetchEpisodes { (episodes) in
+            var myEpisodes = episodes
+            for (index, _) in episodes.enumerated() {
+                self.episodesPubDateToStr(episode: &myEpisodes[index])
+            }
             DispatchQueue.main.async {
-                self.episodes.value = episodes
+                self.episodes.value = myEpisodes
             }
         } errorHandler: { (error) in
             print("🚨 Failed to get episodes!")
         }
+    }
+    
+    fileprivate func episodesPubDateToStr(episode: inout Episode) {
+        let formatter = Formatter()
+        episode.pubDateFormattedStr = formatter.formattedDateString(date: episode.pubDate)
     }
     
     func setSelectedEpisodeIndex(selectedIndex: Int) {

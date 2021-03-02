@@ -20,6 +20,7 @@ struct Episode: Codable {
     var imageUrl: String?
     
     var fileUrl: String?
+    var pubDateFormattedStr: String = ""
     
     init(feedItem: RSSFeedItem) {
         self.title = feedItem.title ?? ""
