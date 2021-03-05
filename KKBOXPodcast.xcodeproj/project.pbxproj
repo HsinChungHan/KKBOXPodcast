@@ -17,7 +17,6 @@
 		D1212B2725E4E50500A96A1C /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B2625E4E50500A96A1C /* EpisodeCell.swift */; };
 		D1212B2C25E5153300A96A1C /* HomeVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B2B25E5153300A96A1C /* HomeVCViewModel.swift */; };
 		D1212B3125E5155600A96A1C /* BIndable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B3025E5155600A96A1C /* BIndable.swift */; };
-		D1212B4D25E5225D00A96A1C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B4C25E5225D00A96A1C /* StringExtension.swift */; };
 		D1212B6725E53AFD00A96A1C /* EpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */; };
 		D1212B6F25E53CCB00A96A1C /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B6E25E53CCB00A96A1C /* TextLabel.swift */; };
 		D1212B7425E543E200A96A1C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1212B7325E543E200A96A1C /* UIViewExtension.swift */; };
@@ -83,7 +82,6 @@
 		D1212B2625E4E50500A96A1C /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		D1212B2B25E5153300A96A1C /* HomeVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVCViewModel.swift; sourceTree = "<group>"; };
 		D1212B3025E5155600A96A1C /* BIndable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BIndable.swift; sourceTree = "<group>"; };
-		D1212B4C25E5225D00A96A1C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		D1212B6625E53AFD00A96A1C /* EpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeViewController.swift; sourceTree = "<group>"; };
 		D1212B6E25E53CCB00A96A1C /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
 		D1212B7325E543E200A96A1C /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				D1212B3025E5155600A96A1C /* BIndable.swift */,
-				D1212B4C25E5225D00A96A1C /* StringExtension.swift */,
 				D1212B6E25E53CCB00A96A1C /* TextLabel.swift */,
 				D1212B7325E543E200A96A1C /* UIViewExtension.swift */,
 				D1212BBD25E697A800A96A1C /* CMTimeExtension.swift */,
@@ -706,7 +703,6 @@
 				D1212B2C25E5153300A96A1C /* HomeVCViewModel.swift in Sources */,
 				D1212B0B25E4E07100A96A1C /* Episode.swift in Sources */,
 				D1212BA925E61E8100A96A1C /* MaxPlayerViewWithUI.swift in Sources */,
-				D1212B4D25E5225D00A96A1C /* StringExtension.swift in Sources */,
 				D1212B8F25E5F9B900A96A1C /* PlayerView.swift in Sources */,
 				D1212AFF25E4E01E00A96A1C /* APIService.swift in Sources */,
 				D1212C1925E6DD2F00A96A1C /* MaxPlayerViewWithAVPlayer.swift in Sources */,

@@ -28,7 +28,7 @@ extension MaxPlayerView {
     
     func makeEpisodeImageView() -> UIImageView {
         let imageView = UIImageView()
-        let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+        let url = URL(string: episode.imageUrl ?? "")
         imageView.sd_setImage(with: url)
         imageView.transform = shrinkTransform
         return imageView

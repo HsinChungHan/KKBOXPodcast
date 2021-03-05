@@ -7,9 +7,9 @@
 
 import UIKit
 
-// - FIXME: 這邊違反了 OOD 中的 Lisko substitution principle
+
 protocol BasicLabel {
-    var txtColor: UIColor { get }
+    func setLabel(text: String, numberOfLines: Int, fontSize: CGFloat)
 }
 
 extension BasicLabel where Self: UILabel {
@@ -17,10 +17,18 @@ extension BasicLabel where Self: UILabel {
         self.text = text
         self.numberOfLines = numberOfLines
         self.font = .boldSystemFont(ofSize: fontSize)
-        self.textColor = txtColor
     }
 }
 
 class BoldLabel: UILabel,  BasicLabel{
-    var txtColor: UIColor = .black
+    
+    init(textColor: UIColor = .black, fontSize: CGFloat = 12) {
+        super.init(frame: .zero)
+        self.textColor = textColor
+        self.font = .boldSystemFont(ofSize: fontSize)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
