@@ -14,6 +14,7 @@ enum APIServiceError {
     case URLError
     case ParseError
     case FeedError
+    case DownloadError
 }
 
 
@@ -32,7 +33,7 @@ class APIService {
     
     static let shared = APIService()
     
-    func fetchEpisodes(completionHandler: @escaping ([Episode]) -> (), errorHandler: @escaping (APIServiceError) -> ()) {
+    func fetchEpisodes(completionHandler: @escaping ([Episode]) -> Void, errorHandler: @escaping (APIServiceError) -> Void) {
         guard let url = URL(string: APIService.podcastUrl) else {
             errorHandler(.URLError)
             return
@@ -40,9 +41,7 @@ class APIService {
         
         DispatchQueue.global(qos: .background).async {
             let parser = FeedParser(URL: url)
-            
             parser.parseAsync { (result) in
-                
                 switch result {
                 case .success(let feed):
                     guard let rssfeed = feed.rssFeed else {
@@ -59,20 +58,19 @@ class APIService {
         }
     }
     
-    func downloadEpisode(episode: Episode) {
-        let url = episode.streamUrl
+    func downloadEpisode(url: String, episodeTitle: String, completionHandler: @escaping (String, String) -> Void , errorHandler: @escaping (APIServiceError) -> Void) {
         let destination: DownloadRequest.Destination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURL = documentsURL.appendingPathComponent("\(episode.title).mp3")
+            let fileURL = documentsURL.appendingPathComponent("\(episodeTitle).mp3")
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
         AF.download(url, to: destination)
             .downloadProgress { (progress) in
-                NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
+                NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episodeTitle, "progress": progress.fractionCompleted])
             }
             .response { (response) in
-                print("\(episode.title) is download successfully!")
+                print("\(episodeTitle) is download successfully!")
                 
                 if let error = response.error {
                     print("🚨response error! \(error)")
@@ -84,10 +82,9 @@ class APIService {
                     return
                 }
                 
-                let episodeDownloadComplete = EpisodeDownloadComplete(fileUrl: filePath, episodeTitle: episode.title)
+                let episodeDownloadComplete = EpisodeDownloadComplete(fileUrl: filePath, episodeTitle: episodeTitle)
                 NotificationCenter.default.post(name: .downloadProgress, object: episodeDownloadComplete, userInfo: nil)
-                
-                DownloadManager.updateDownloadedEpisodFilePath(episode: episode, filePath: filePath)
+                completionHandler(filePath, episodeTitle)
             }
     }
 }

@@ -31,4 +31,15 @@ struct Episode: Codable {
         self.summary = feedItem.iTunes?.iTunesSummary ?? ""
         self.imageUrl = feedItem.iTunes?.iTunesImage?.attributes?.href
     }
+    
+    init(title: String, pubDate: Date, description: String, author: String, streamUrl: String, summary: String, imageUrl: String?, fileUrl: String?) {
+        self.title = title
+        self.pubDate = pubDate
+        self.description = description
+        self.author = author
+        self.streamUrl = streamUrl
+        self.summary = summary
+        self.imageUrl = imageUrl
+        self.fileUrl = fileUrl
+    }
 }

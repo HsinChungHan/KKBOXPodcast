@@ -21,34 +21,33 @@ class HomeVCViewModel {
     
     var action = Action.GoToEpisode
     
-    func fetchEpisodes() {
+    func fetchEpisodes(completionHandler: @escaping ([Episode]) -> Void) {
         APIService.shared.fetchEpisodes { (episodes) in
             var myEpisodes = episodes
+            let formatter = Formatter()
             for (index, _) in episodes.enumerated() {
-                self.episodesPubDateToStr(episode: &myEpisodes[index])
+                myEpisodes[index].pubDateFormattedStr = formatter.formattedDateString(date: myEpisodes[index].pubDate)
             }
             DispatchQueue.main.async {
                 self.episodes.value = myEpisodes
+                completionHandler(myEpisodes)
             }
         } errorHandler: { (error) in
             print("🚨 Failed to get episodes!")
         }
     }
-    
-    fileprivate func episodesPubDateToStr(episode: inout Episode) {
-        let formatter = Formatter()
-        episode.pubDateFormattedStr = formatter.formattedDateString(date: episode.pubDate)
-    }
-    
-    func setSelectedEpisodeIndex(selectedIndex: Int) {
+     
+    func setSelectedEpisodeIndexValue(selectedIndex: Int) {
         guard let episodes = episodes.value else {
             print("🚨Episodes is nil!")
             return
         }
-        if selectedIndex >= 0 && selectedIndex < episodes.count {
+        setSelectedEpisodeIndex(episdoesCount: episodes.count, selectedIndex: selectedIndex)
+    }
+    
+    func setSelectedEpisodeIndex(episdoesCount: Int, selectedIndex: Int) {
+        if selectedIndex >= 0 && selectedIndex < episdoesCount {
             self.selectedEpisodeIndex.value = selectedIndex
-        }else {
-            print("This is the final episode!")
         }
     }
 }
