@@ -98,7 +98,7 @@ extension EpisodeCell {
     
     fileprivate func setEpisodeImageView(episode: Episode) {
         // - MARK: add activity indicator
-        let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+        let url = URL(string: episode.imageUrl ?? "")
         episodeImageView.sd_setImage(with: url)
     }
 }

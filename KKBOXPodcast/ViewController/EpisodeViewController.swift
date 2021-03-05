@@ -80,7 +80,7 @@ extension EpisodeViewController {
     
     fileprivate func makeEpisodeImageView() -> UIImageView {
         let imageView = UIImageView()
-        let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+        let url = URL(string: episode.imageUrl ?? "")
         imageView.sd_setImage(with: url)
         return imageView
     }
