@@ -14,15 +14,16 @@ protocol MinPlayerViewDelegate: AnyObject {
 
 class MinPlayerView: PlayerView {
     
-    weak var delegate: MinPlayerViewDelegate?
+    fileprivate weak var minPlayerViewDelegate: MinPlayerViewDelegate?
     
     fileprivate lazy var episodeImageView = makeEpisodeImageView()
     fileprivate lazy var titleLabel = makeTitleLabel()
     fileprivate lazy var playButton = makePlayButton()
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        backgroundColor = .white
+    init(playerViewDataSource: PlayerViewDataSource, minPlayerViewDelegate: MinPlayerViewDelegate) {
+        self.minPlayerViewDelegate = minPlayerViewDelegate
+        super.init(playerViewDataSource: playerViewDataSource)
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -35,7 +36,7 @@ extension MinPlayerView {
     
     fileprivate func makeEpisodeImageView() -> UIImageView {
         let imageView = UIImageView()
-        let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
+        let url = URL(string: episode.imageUrl ?? "")
         imageView.sd_setImage(with: url)
         return imageView
     }
@@ -54,7 +55,7 @@ extension MinPlayerView {
     }
     
     @objc func pressPlayerButton(sender: UIButton) {
-        guard let delegate = delegate else {
+        guard let delegate = minPlayerViewDelegate else {
             print("🚨 You have to set delegate for MinPlayerViewDelegate!")
             return
         }
@@ -62,6 +63,8 @@ extension MinPlayerView {
     }
     
     func setupLayout() {
+        backgroundColor = .white
+        alpha = 0.0
         let stackView = UIStackView()
         [episodeImageView, titleLabel, playButton].forEach {
             stackView.addArrangedSubview($0)

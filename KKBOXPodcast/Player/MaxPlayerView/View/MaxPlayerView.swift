@@ -24,7 +24,7 @@ protocol MaxPlayerViewDelegate: AnyObject {
 class MaxPlayerView: PlayerView {
     
     weak var maxPlayerViewDataSource: MaxPlayerViewDataSource?
-    weak var delegate: MaxPlayerViewDelegate?
+    weak var maxPlayerViewDelegate: MaxPlayerViewDelegate?
     
     var superView: UIView {
         guard let dataSource = maxPlayerViewDataSource else {
@@ -46,7 +46,7 @@ class MaxPlayerView: PlayerView {
     lazy var nextButton = makeNextButton()
     lazy var overallStackView = makeOverallStackView()
     
-    lazy var avPlayer = makeAVPlayer()
+    lazy var podcastPlayer = makeAVPlayer()
     
     let vm = MaxPlayerViewModel()
     
@@ -57,15 +57,14 @@ class MaxPlayerView: PlayerView {
     
     var panGesture: UIPanGestureRecognizer!
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        backgroundColor = .white
-        
-        addBoundaryTimeObserver()
-        addPlayerDidFinishObserver()
-        addAVPlayerCurrentTimeObserver()
+    init(playerViewDataSource: PlayerViewDataSource, maxPlayerViewDataSource: MaxPlayerViewDataSource, maxPlayerViewDelegate: MaxPlayerViewDelegate) {
+        self.maxPlayerViewDataSource = maxPlayerViewDataSource
+        self.maxPlayerViewDelegate = maxPlayerViewDelegate
+        super.init(playerViewDataSource: playerViewDataSource)
         
         bindUIComponent()
+        setupLayout()
+        setupGestureRecognizer()
     }
     
     required init?(coder: NSCoder) {
@@ -82,25 +81,27 @@ class MaxPlayerView: PlayerView {
 // MARK: - Bindable
 extension MaxPlayerView {
     
-    func bindPlayButton() {
-        vm.isPlaying.bind {[weak self] (isPlaying) in
-            guard let isPlaying = isPlaying else { return }
+    func bindPodcastPlayerStatus() {
+        vm.podcastPlayerStatus.bind {[weak self] (status) in
+            guard let status = status else { return }
             var buttonImage: UIImage
-            if isPlaying {
-                guard let _ = R.image.pause() else { return }
-                buttonImage = R.image.pause()!
-                self?.identityEpisodeImageView()
-            }else {
-                guard let _ = R.image.play() else { return }
-                buttonImage = R.image.play()!
-                self?.shrinkEpisodeImageView()
+            
+            switch status {
+                case .playing:
+                    guard let _ = R.image.pause() else { return }
+                    buttonImage = R.image.pause()!
+                    self?.identityEpisodeImageView()
+                default:
+                    guard let _ = R.image.play() else { return }
+                    buttonImage = R.image.play()!
+                    self?.shrinkEpisodeImageView()
             }
             self?.playButton.setImage(buttonImage, for: .normal)
             self?.minPlayerView.setImageForPlayButton(image: buttonImage)
         }
     }
     
-    func bindCurrentTimeLabel() {
+    func bindCurrentTimeStr() {
         vm.currentTimeStr.bind {[weak self] (timeStr) in
             guard let timeStr = timeStr else { return }
             self?.currentTimeLabel.text = timeStr
@@ -109,13 +110,13 @@ extension MaxPlayerView {
     }
     
     func updateSlider() {
-        let currentTimeSeconds = CMTimeGetSeconds(avPlayer.currentTime())
-        let durationSeconds = CMTimeGetSeconds(avPlayer.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
+        let currentTimeSeconds = CMTimeGetSeconds(podcastPlayer.currentTime())
+        let durationSeconds = CMTimeGetSeconds(podcastPlayer.currentItem?.duration ?? CMTimeMake(value: 1, timescale: 1))
         let percentage = currentTimeSeconds / durationSeconds
         self.slider.value = Float(percentage)
     }
     
-    func bindDurationTimeLabel() {
+    func bindDurationTimeStr() {
         vm.durationTimeStr.bind {[weak self] (timeStr) in
             guard let timeStr = timeStr else { return }
             self?.durationTimeLabel.text = timeStr
@@ -123,15 +124,16 @@ extension MaxPlayerView {
     }
     
     func bindUIComponent() {
-        bindPlayButton()
-        bindCurrentTimeLabel()
-        bindDurationTimeLabel()
+        bindPodcastPlayerStatus()
+        bindCurrentTimeStr()
+        bindDurationTimeStr()
     }
 }
 
 
 // MARK: - PlayerView Protocol
 extension MaxPlayerView: PlayerViewDataSource {
+    
     func playerViewEpisode(_ playerView: PlayerView) -> Episode {
         return episode
     }
@@ -140,6 +142,7 @@ extension MaxPlayerView: PlayerViewDataSource {
 
 // MARK: - MinPlayerView Protocol
 extension MaxPlayerView: MinPlayerViewDelegate {
+    
     func minPlayerViewPressPlayerButton(_ minPlayerView: MinPlayerView) {
         pressPlayerButton(sender: playButton)
     }

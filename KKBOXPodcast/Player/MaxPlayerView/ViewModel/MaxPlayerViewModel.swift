@@ -6,29 +6,12 @@
 //
 
 import Foundation
+import AVKit
 
 
 class MaxPlayerViewModel {
     
-    let isPlaying = Bindable<Bool>.init(value: false)
+    let podcastPlayerStatus = Bindable<AVPlayer.TimeControlStatus>.init(value: .paused)
     let currentTimeStr = Bindable<String>.init(value: nil)
     let durationTimeStr = Bindable<String>.init(value: nil)
-    
-    private(set) var isUsingDownloadedEpisode = false
-    
-    func setIsPlaying(isPlaying: Bool) {
-        self.isPlaying.setValue(value: isPlaying)
-    }
-    
-    func setCurrentTimeStr(currentTimeStr: String) {
-        self.currentTimeStr.setValue(value: currentTimeStr)
-    }
-    
-    func setDurationTimeStr(durationTimeStr: String) {
-        self.durationTimeStr.setValue(value: durationTimeStr)
-    }
-    
-    func setIsUsingDownloadedEpisode(isUsingDownloadedEpisode: Bool) {
-        self.isUsingDownloadedEpisode = isUsingDownloadedEpisode
-    }
 }
