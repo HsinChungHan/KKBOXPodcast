@@ -35,7 +35,7 @@ class DownloadManagerTest: XCTestCase {
         var episodes: [Episode]?
         
         guard let episodesData = UserDefaults.standard.data(forKey: DownloadManager.downloadedEpisodesKey) else {
-            XCTFail("UserDefaults should have download episodes")
+            XCTFail("UserDefaults should have downloaded episodes")
             return
         }
         
@@ -57,23 +57,27 @@ class DownloadManagerTest: XCTestCase {
     }
     
     func testGetEpisode() {
+        DownloadManager.saveEpisode(episode: testEpisode)
         XCTAssertNotNil(DownloadManager.getEpisodes())
     }
     
     func testGetSpecificEpisode() {
+        DownloadManager.saveEpisode(episode: testEpisode)
         XCTAssertNotNil(DownloadManager.getSpecificEpisode(title: title, author: author))
     }
     
-    func testDeleteEpisode() {
-        XCTAssertEqual(DownloadManager.deleteEpisode(title: title), true)
-    }
-    
     func testUpdateDownloadedEpisodFilePath() {
+        DownloadManager.saveEpisode(episode: testEpisode)
         DownloadManager.updateDownloadedEpisodFilePath(episode: testEpisode, filePath: fileUrl)
         guard let episode = DownloadManager.getSpecificEpisode(title: title, author: author) else {
             XCTFail("Failed to find episode")
             return
         }
         XCTAssertEqual(episode.fileUrl, fileUrl)
+    }
+    
+    func testDeleteEpisode() {
+        DownloadManager.saveEpisode(episode: testEpisode)
+        XCTAssertEqual(DownloadManager.deleteEpisode(title: title), true)
     }
 }

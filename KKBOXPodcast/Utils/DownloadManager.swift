@@ -14,9 +14,7 @@ class DownloadManager {
     
     static func saveEpisode(episode: Episode) {
         do {
-            guard var episodes = getEpisodes() else {
-                return
-            }
+            var episodes = getEpisodes()
             episodes.insert(episode, at: 0)
             let data = try JSONEncoder().encode(episodes)
             UserDefaults.standard.set(data, forKey: DownloadManager.downloadedEpisodesKey)
@@ -26,8 +24,8 @@ class DownloadManager {
         }
     }
     
-   static func getEpisodes() -> [Episode]? {
-        var episodes: [Episode]? = nil
+   static func getEpisodes() -> [Episode] {
+        var episodes = [Episode]()
         guard let episodesData = UserDefaults.standard.data(forKey: DownloadManager.downloadedEpisodesKey) else { return episodes }
         do {
             episodes = try JSONDecoder().decode([Episode].self, from: episodesData)
@@ -38,7 +36,8 @@ class DownloadManager {
     }
     
     static func getSpecificEpisode(title: String, author: String) -> Episode? {
-        guard let downloadedEpisodes = getEpisodes(), let episodeIndex = downloadedEpisodes.firstIndex(where: { $0.title == title && $0.author == author}) else {
+        let downloadedEpisodes = getEpisodes()
+        guard let episodeIndex = downloadedEpisodes.firstIndex(where: { $0.title == title && $0.author == author}) else {
             return nil
         }
         return downloadedEpisodes[episodeIndex]
@@ -46,7 +45,8 @@ class DownloadManager {
     
     @discardableResult
     static func deleteEpisode(title: String) -> Bool {
-        guard let downloadedEpisodes = getEpisodes() else {
+        let downloadedEpisodes = getEpisodes()
+        if getEpisodes().isEmpty {
             return false
         }
         let filteredEpisodes = downloadedEpisodes.filter { (downloadedEpisode) -> Bool in
@@ -64,10 +64,8 @@ class DownloadManager {
     }
     
     static func updateDownloadedEpisodFilePath(episode: Episode, filePath: String) {
-        // find download episode and update it's file path
-        saveEpisode(episode: episode)
-        
-        guard var downloadedEpisodes = getEpisodes(), let episodeIndex = downloadedEpisodes.firstIndex(where: { $0.title == episode.title && $0.author == episode.author}) else {
+        var downloadedEpisodes = getEpisodes()
+        guard let episodeIndex = downloadedEpisodes.firstIndex(where: { $0.title == episode.title && $0.author == episode.author}) else {
             // - MARK: failed to find downloaded episode in user default
             print("🚨Failed to find downloaded episode in user default!")
             return

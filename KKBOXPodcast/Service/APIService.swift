@@ -70,8 +70,6 @@ class APIService {
                 NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
             }
             .response { (response) in
-                print("\(episode.title) is download successfully!")
-                
                 if let error = response.error {
                     print("🚨response error! \(error)")
                     return
@@ -84,6 +82,8 @@ class APIService {
                 
                 let episodeDownloadComplete = EpisodeDownloadComplete(fileUrl: filePath, episodeTitle: episode.title)
                 NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
+                print("\(episode.title) is download successfully!")
+                DownloadManager.saveEpisode(episode: episode)
                 DownloadManager.updateDownloadedEpisodFilePath(episode: episode, filePath: filePath)
             }
     }

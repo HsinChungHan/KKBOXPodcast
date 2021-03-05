@@ -12,15 +12,25 @@ import XCTest
 class APIServiceTests: XCTestCase {
     
     var apiService: APIService!
+    var testEpisode: Episode!
+    var title: String!
+    var streamUrl: String!
     
     override func setUp() {
         super.setUp()
         apiService = APIService.shared
+        title = "Ep. 134 數位藝術的畢卡索｜特別來賓「寶博朋友說」 葛如鈞"
+        streamUrl = "https://feeds.soundcloud.com/stream/994918048-daodutech-podcast-how-to-become-digital-arts-picasso-guest-daab-jo-chun-ko.mp3"
+        testEpisode = Episode(title: title, pubDate: Date(), description: "", author: "", streamUrl: streamUrl, summary: "", imageUrl: nil, fileUrl: nil)
     }
     
     override func tearDown() {
-        super.tearDown()
         apiService = nil
+        title = nil
+        streamUrl = nil
+        title = nil
+        testEpisode = nil
+        super.tearDown()
     }
     
     func testFetchEpisodes() {
@@ -46,26 +56,14 @@ class APIServiceTests: XCTestCase {
     
     func testDownloadEpisode() {
         //given
-        let promise = expectation(description: "download episode")
-        
-        var response: (String, String)?
         var responseError: APIServiceError?
         
         //when
-        let url = "https://feeds.soundcloud.com/stream/994918048-daodutech-podcast-how-to-become-digital-arts-picasso-guest-daab-jo-chun-ko.mp3"
-        let title = "Ep. 134 數位藝術的畢卡索｜特別來賓「寶博朋友說」 葛如鈞"
-        apiService.downloadEpisode(url: url, episodeTitle: title) { (filePath, title) in
-            response = (filePath, title)
-            promise.fulfill()
-        } errorHandler: { (error) in
+        apiService.downloadEpisode(episode: testEpisode) { (error) in
             responseError = error
         }
 
-        // cause download takes lots of time, so maybe you can set timeout to 60
-        wait(for: [promise], timeout: 40)
-
         //then
-        XCTAssertNotNil(response)
         XCTAssertNil(responseError)
     }
 }
