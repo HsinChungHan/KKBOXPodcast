@@ -58,19 +58,19 @@ class APIService {
         }
     }
     
-    func downloadEpisode(url: String, episodeTitle: String, completionHandler: @escaping (String, String) -> Void , errorHandler: @escaping (APIServiceError) -> Void) {
+    func downloadEpisode(episode: Episode, errorHandler: @escaping (APIServiceError) -> Void) {
         let destination: DownloadRequest.Destination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURL = documentsURL.appendingPathComponent("\(episodeTitle).mp3")
+            let fileURL = documentsURL.appendingPathComponent("\(episode.title).mp3")
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        AF.download(url, to: destination)
+        AF.download(episode.streamUrl, to: destination)
             .downloadProgress { (progress) in
-                NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episodeTitle, "progress": progress.fractionCompleted])
+                NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
             }
             .response { (response) in
-                print("\(episodeTitle) is download successfully!")
+                print("\(episode.title) is download successfully!")
                 
                 if let error = response.error {
                     print("🚨response error! \(error)")
@@ -82,9 +82,9 @@ class APIService {
                     return
                 }
                 
-                let episodeDownloadComplete = EpisodeDownloadComplete(fileUrl: filePath, episodeTitle: episodeTitle)
-                NotificationCenter.default.post(name: .downloadProgress, object: episodeDownloadComplete, userInfo: nil)
-                completionHandler(filePath, episodeTitle)
+                let episodeDownloadComplete = EpisodeDownloadComplete(fileUrl: filePath, episodeTitle: episode.title)
+                NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
+                DownloadManager.updateDownloadedEpisodFilePath(episode: episode, filePath: filePath)
             }
     }
 }

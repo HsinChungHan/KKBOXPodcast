@@ -68,9 +68,7 @@ extension PodcastPlayer {
             let playerItem = AVPlayerItem(url: url)
             replaceCurrentItem(with: playerItem)
             play()
-            APIService.shared.downloadEpisode(url: episode.streamUrl, episodeTitle: episode.title) { (filePath, _) in
-                DownloadManager.updateDownloadedEpisodFilePath(episode: self.episode, filePath: filePath)
-            } errorHandler: { (error) in
+            APIService.shared.downloadEpisode(episode: episode) { (error) in
                 print("🚨 Failed to download episode!")
                 return
             }

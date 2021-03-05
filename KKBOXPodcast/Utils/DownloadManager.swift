@@ -27,7 +27,7 @@ class DownloadManager {
     }
     
    static func getEpisodes() -> [Episode]? {
-        var episodes: [Episode]?
+        var episodes: [Episode]? = nil
         guard let episodesData = UserDefaults.standard.data(forKey: DownloadManager.downloadedEpisodesKey) else { return episodes }
         do {
             episodes = try JSONDecoder().decode([Episode].self, from: episodesData)
